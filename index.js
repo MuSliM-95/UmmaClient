@@ -114,20 +114,21 @@ async function getAddress(text) {
     formData.delete("city");
     formData.delete("location");
     formData.delete("address");
+    if (address) {
+      formData.append(
+        "region",
+        address.suggestions[0]?.data.region +
+          ` ${address.suggestions[0]?.data.region_type_full}`
+      );
+      formData.append("city", address.suggestions[0].data?.settlement);
+      formData.append("location", [
+        address.suggestions[0].data?.geo_lat,
+        address.suggestions[0].data?.geo_lon,
+      ]);
+      formData.append("address", address.suggestions[0].value);
 
-    formData.append(
-      "region",
-      address.suggestions[0].data.region +
-        ` ${address.suggestions[0].data.region_type_full}`
-    );
-    formData.append("city", address.suggestions[0].data.settlement);
-    formData.append("location", [
-      address.suggestions[0].data.geo_lat,
-      address.suggestions[0].data.geo_lon,
-    ]);
-    formData.append("address", address.suggestions[0].value);
-    // console.log(address);
-    return address;
+      return address;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -184,9 +185,9 @@ async function sendHtmlCodeAsDocument() {
 
   console.log(address);
 
-  if (!name || !region || !city || !place || !prayer || !address || !location) {
-    return;
-  }
+  // if (!name || !region || !city || !place || !prayer || !address || !location) {
+  //   return;
+  // }
 
   try {
     const res = await fetch(`http://localhost:5000/data`, {
