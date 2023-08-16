@@ -173,6 +173,8 @@ async function sendMessageTelegram(params) {
 // Функция для button для отправки формы
 async function sendHtmlCodeAsDocument() {
   const name = nameInput.value;
+  formData.delete("name");
+  formData.delete("photo");
   formData.append("name", name);
   formData.append("photo", photo.files[0]);
 
@@ -185,9 +187,9 @@ async function sendHtmlCodeAsDocument() {
 
   console.log(address);
 
-  // if (!name || !region || !city || !place || !prayer || !address || !location) {
-  //   return;
-  // }
+  if (!name || !region || !city || !place || !prayer || !address || !location) {
+    return;
+  }
 
   try {
     const res = await fetch(`http://localhost:5000/data`, {
