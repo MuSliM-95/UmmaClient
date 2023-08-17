@@ -115,15 +115,19 @@ async function getAddress(text) {
     formData.delete("location");
     formData.delete("address");
     if (address) {
+      const addressData = address.suggestions[0].data
       formData.append(
         "region",
-        address.suggestions[0].data?.region +
-          ` ${address.suggestions[0].data?.region_type_full}`
+        addressData?.region +
+          ` ${addressData?.region_type_full}`
       );
-      formData.append("city", address.suggestions[0].data?.settlement);
+      
+      const city = addressData?.settlement_with_type || addressData?.city_with_type
+
+      formData.append("city", city);
       formData.append("location", [
-        address.suggestions[0].data?.geo_lat,
-        address.suggestions[0].data?.geo_lon,
+        addressData?.geo_lat,
+        addressData?.geo_lon,
       ]);
       formData.append("address", address.suggestions[0]?.value);
       console.log(address);
