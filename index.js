@@ -117,16 +117,16 @@ async function getAddress(text) {
     if (address) {
       formData.append(
         "region",
-        address.suggestions[0]?.data.region +
-          ` ${address.suggestions[0]?.data.region_type_full}`
+        address.suggestions[0].data?.region +
+          ` ${address.suggestions[0].data?.region_type_full}`
       );
       formData.append("city", address.suggestions[0].data?.settlement);
       formData.append("location", [
         address.suggestions[0].data?.geo_lat,
         address.suggestions[0].data?.geo_lon,
       ]);
-      formData.append("address", address.suggestions[0].value);
-
+      formData.append("address", address.suggestions[0]?.value);
+      console.log(address);
       return address;
     }
   } catch (error) {
