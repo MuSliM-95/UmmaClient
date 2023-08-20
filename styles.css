@@ -27,7 +27,6 @@ input {
 .addressInputContainer {
   display: flex;
   flex-direction: column;
-  position: absolute;
   justify-content: space-between;
   width: 100%;
 }
@@ -45,7 +44,6 @@ input {
   display: flex;
   padding: 5px;
   align-items: center;
-  /* bottom: 0; */
   width: 50%;
   justify-content: center;
 }

@@ -125,7 +125,7 @@ async function getAddress(text) {
     formData.delete("location");
     formData.delete("address");
     if (address) {
-      const addressData = address.suggestions[0].data;
+      const addressData = address.suggestions[0]?.data;
       formData.append(
         "region",
         addressData?.region + ` ${addressData?.region_type_full}`
