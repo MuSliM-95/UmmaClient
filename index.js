@@ -8,8 +8,18 @@ const button = document.querySelector(".buttonSection");
 const photo = document.getElementById("file");
 const nameInput = document.getElementById("name");
 
-const TOKEN = "6385242471:AAHbB4XATZPHWTOTahCixY9C2N-uf-Df5EQ";
-const CHATID = 373573317;
+const { token, botToken, chatId } = await getTokenAndId();
+
+async function getTokenAndId() {
+  try {
+    const res = await fetch("http://localhost:5000/admin/info");
+    const data = await res.json();
+
+    return data[0];
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 select.style.display = "none";
 
@@ -102,7 +112,7 @@ async function getAddress(text) {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: "Token d48068d3df3e54cbd1bb9c0a6edf99b88a6adfe4",
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify({ query: text }),
       }
@@ -115,20 +125,17 @@ async function getAddress(text) {
     formData.delete("location");
     formData.delete("address");
     if (address) {
-      const addressData = address.suggestions[0].data
+      const addressData = address.suggestions[0].data;
       formData.append(
         "region",
-        addressData?.region +
-          ` ${addressData?.region_type_full}`
+        addressData?.region + ` ${addressData?.region_type_full}`
       );
-      
-      const city = addressData?.settlement_with_type || addressData?.city_with_type
+
+      const city =
+        addressData?.settlement_with_type || addressData?.city_with_type;
 
       formData.append("city", city);
-      formData.append("location", [
-        addressData?.geo_lat,
-        addressData?.geo_lon,
-      ]);
+      formData.append("location", [addressData?.geo_lat, addressData?.geo_lon]);
       formData.append("address", address.suggestions[0]?.value);
       console.log(address);
       return address;
@@ -158,13 +165,13 @@ function clearForm() {
 // Отправка сообщения в Telegram
 async function sendMessageTelegram(params) {
   try {
-    await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chat_id: CHATID,
+        chat_id: chatId,
         text: `id: ${params?._id}`,
         parse_mode: "HTML",
       }),
