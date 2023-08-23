@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=6d7ebfe2-bf91-441d-8290-5cc784314608&lang=ru_RU" type="text/javascript">
+    </script>
     <link rel="stylesheet" href="./styles.css" />
     <title>Document</title>
   </head>
@@ -10,17 +12,12 @@
     <div class="registrationPage">
       <section class="section">
         <h4>Название заведения</h4>
-        <input id="name" type="text" autoComplete="none" />
+        <input id="name" type="text" autocomplete="none" />
       </section>
       <section class="section">
         <h4>Укажите что за место вы добавляете</h4>
         <label for="place1">
-          <input
-            data-place="Мечеть"
-            type="checkbox"
-            name="place"
-            id="place1"
-          />
+          <input data-place="Мечеть" type="checkbox" name="place" id="place1" />
           Мечеть
         </label>
 
@@ -106,21 +103,24 @@
         </label>
       </section>
       <section class="section">
-        <h4>Добавить фото</h4>
+        <h4 class="section_h4_file">Добавить фото</h4>
         <input id="file" type="file" />
       </section>
       <section class="section" id="addressSection">
-
-        <div class="addressInputContainer">
           <h4>Укажите адрес</h4>
-          <input id="addressInput" type="text" autoComplete="none" />
-          <div class="select" id="select"></div>
-        </div>
+          <div style="display: flex">
+            <input id="addressInput" type="text" autocomplete="none" />
+            <img class="section_mapButton" id="mapButton" src="./image/ico_6.jpg" />
+          </div>
+          <div class="section_select" id="select"></div>
       </section>
-      <section class="buttonSection section">
-        <button type="button" class="button">Добавить</button>
+      <section class="section section_map_none" id="mapSection">
+        <div id="map" style="width: 100%; height: 400px"></div>
+      </section>      
+      <section class="section_button section">
+        <button id="button" type="button">Добавить</button>
       </section>
     </div>
-    <script defer type="module" src="./index.js"></script>
+    <script defer type="module" src="./javaScript/index.js"></script>
   </body>
 </html>

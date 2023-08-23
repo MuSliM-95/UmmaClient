@@ -7,6 +7,14 @@
 h4 {
   margin-bottom: 5px;
 }
+h4::before {
+  content: "* ";
+  color: red;
+}
+
+.section_h4_file::before {
+  content: "";
+}
 
 input {
   margin: 2px;
@@ -24,13 +32,6 @@ input {
   position: relative;
 }
 
-.addressInputContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .section {
   width: 80%;
   height: 50%;
@@ -40,7 +41,11 @@ input {
   position: relative;
 }
 
-.buttonSection {
+.section_map_none {
+  display: none;
+
+}
+.section_button {
   display: flex;
   padding: 5px;
   align-items: center;
@@ -54,11 +59,15 @@ input {
   border-radius: 2px;
   font-size: 14px;
   padding: 5px;
-  width: 100%;
+  width: 93%;
   z-index: 100;
 }
 
 #addressInput {
   width: 100%;
   outline: none;
+}
+
+.section_mapButton {
+  width: 6%;
 }
