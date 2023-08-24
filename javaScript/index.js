@@ -71,18 +71,33 @@ addressInput.addEventListener("input", (e) => {
 
 // function для обработки данных с адреса.
 export function dataProcessing(address, coords) {
-
+console.log(address);
+console.log(coords);
   formData.delete("region");
   formData.delete("city");
   formData.delete("location");
   formData.delete("address");
+  
+// Есть два способа получение адреса: с сервиса Dadata и с Яндекс.Карты.
 
-// Есть два способа получение адреса: через поля ввода (input) и С меткой на карте. Обрабатываем их.
-  const addressData = address?.suggestions && address?.suggestions[0]?.data;
-  const region = addressData?.region + ` ${addressData?.region_type_full}` || address?.administrativeAreas
-  const city = addressData?.settlement_with_type || addressData?.city_with_type || address?.localities[0];
-  const location =  [addressData?.geo_lat, addressData?.geo_lon] || coords
-  const addressForm = address?.suggestions && address?.suggestions[0]?.value || address?.addressLine
+// Обработка данных с Яндекс.Карты
+  const regionFromMaps = address?.administrativeAreas && address?.administrativeAreas[0]
+  const cityDataFromMaps = address?.localities && address?.localities[0] || address?.premise
+  const locationFromMaps = coords
+  const addressFromMaps =  address?.addressLine
+  
+// Обработка данных от сервиса Dadata
+  const DataFromDadata = address?.suggestions && address?.suggestions[0]?.data;
+  const cityDataFromDadata = DataFromDadata?.settlement_with_type || DataFromDadata?.city_with_type
+  const locationFromDadata = [DataFromDadata?.geo_lat, DataFromDadata?.geo_lon]
+  const regionFromDadata = DataFromDadata?.region + ` ${DataFromDadata?.region_type_full}`
+  const addressFromDadata = address?.suggestions && address?.suggestions[0]?.value
+
+// Получаем данные в зависимости от выбранного способа пользователям 
+  const region = regionFromMaps || regionFromDadata
+  const city = cityDataFromDadata || cityDataFromMaps || "Не указан";
+  const location = locationFromMaps ||  locationFromDadata
+  const addressForm = addressFromMaps || addressFromDadata
   
   formData.append("region", region);
   formData.append("city", city);
