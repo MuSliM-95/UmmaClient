@@ -59,7 +59,7 @@ export async function sendMessageTelegram(data) {
 }
 
 // Функция для отправки формы.
-export async function sendHtmlCodeAsDocument(nameInput, photo, formData) {
+export async function addAddress(nameInput, photo, formData) {
   const name = nameInput.value;
   formData.delete("name");
   formData.delete("photo");

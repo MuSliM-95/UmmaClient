@@ -1,6 +1,6 @@
-import "./map.js";
+import "./addAddress.js";
 import "./api.js";
-import { getAddress, sendHtmlCodeAsDocument } from "./api.js";
+import { addAddress, getAddress } from "./api.js";
 import { showAddressesDropdown } from "./options.js";
 
 const checkboxesPlaces = document.querySelectorAll('input[name="place"]');
@@ -11,9 +11,6 @@ const submitButton = document.getElementById("button");
 const photo = document.getElementById("file");
 const nameInput = document.getElementById("name");
 
-
-
-select.style.display = "none";
 
 export let formData = new FormData();
 let timer;
@@ -124,7 +121,7 @@ export function clearForm() {
 }
 
 submitButton.addEventListener("click", () =>
-  sendHtmlCodeAsDocument(
+addAddress(
     nameInput,
     photo,
     formData,

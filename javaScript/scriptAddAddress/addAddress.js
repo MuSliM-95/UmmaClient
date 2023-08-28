@@ -7,11 +7,11 @@ const mapButton = document.getElementById("mapButton")
 
 let firstGeoObject
 
+
 async function init() {
 
     const location = await getMyLocation()
     await getAddressFromCoordinates(location)
-    // console.log(location);
 
     const myMap = new ymaps.Map("map", {
         center: location,
@@ -32,6 +32,7 @@ async function init() {
     placemark.geometry.setCoordinates(event.get("coords"));
 
     getAddressFromCoordinates(placemark.geometry.getCoordinates());
+    
   });
 
   async function getAddressFromCoordinates(coords) {
@@ -42,7 +43,7 @@ async function init() {
       addressInput.value = firstGeoObject.getAddressLine();
 
     if(coords) {
-        dataProcessing(firstGeoObject?._xalEntities, coords)
+       dataProcessing(firstGeoObject?._xalEntities, coords)
     }
   }
 }
@@ -50,6 +51,10 @@ async function init() {
 
 
 mapButton.addEventListener("click", () => {
-    mapSection.classList.toggle("section_map_none")
+  console.log(!addressInput.value);
+  if(!addressInput.value) {
     ymaps.ready(init);
+  }
+    mapSection.classList.toggle("section_map_none")
+   
 })

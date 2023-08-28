@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=6d7ebfe2-bf91-441d-8290-5cc784314608&lang=ru_RU" type="text/javascript">
+    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=6d7ebfe2-bf91-441d-8290-5cc784314608&lang=ru_RU" type="text/javascript">
     </script>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../styles/addAddress.css" />
     <title>Document</title>
   </head>
   <body>
@@ -17,38 +17,56 @@
       <section class="section">
         <h4>Укажите что за место вы добавляете</h4>
         <label for="place1">
-          <input data-place="Мечеть" type="checkbox" name="place" id="place1" />
-          Мечеть
+          <input data-place="Мечеть, молельня..." type="checkbox" name="place" id="place1" />
+          Мечеть, молельня...
         </label>
 
         <label for="place2">
           <input
-            data-place="Халялное кафе"
+            data-place="Кафе, столовая, ресторан"
             type="checkbox"
             name="place"
             id="place2"
           />
-          Халялное кафе
+          Кафе, столовая, ресторан
         </label>
 
         <label for="place3">
           <input
-            data-place="Халялный магазин"
+            data-place="Здоровье, аптека, стоматология"
             type="checkbox"
             name="place"
             id="place3"
           />
-          Халялный магазин
+          Здоровье, аптека, стоматология
         </label>
 
         <label for="place4">
           <input
-            data-place="Молельное место"
+            data-place="Автозапчасти, сервис..."
             type="checkbox"
             name="place"
             id="place4"
           />
-          Молельное место
+          Автозапчасти, сервис...
+        </label>
+        <label for="place5">
+          <input
+            data-place="Продуктовый Магазин"
+            type="checkbox"
+            name="place"
+            id="place4"
+          />
+          Продуктовый Магазин
+        </label>
+        <label for="place5">
+          <input
+            data-place="Исламский магазин"
+            type="checkbox"
+            name="place"
+            id="place4"
+          />
+          Исламский магазин
         </label>
       </section>
       <section class="section">
@@ -110,17 +128,17 @@
           <h4>Укажите адрес</h4>
           <div style="display: flex">
             <input id="addressInput" type="text" autocomplete="none" />
-            <img class="section_mapButton" id="mapButton" src="./image/ico_6.jpg" />
+            <img class="section_mapButton" id="mapButton" src="../image/ico_6.jpg" />
           </div>
-          <div class="section_select" id="select"></div>
+          <div class="section_select" style="display: none;"  id="select"></div>
       </section>
       <section class="section section_map_none" id="mapSection">
         <div id="map" style="width: 100%; height: 400px"></div>
       </section>      
       <section class="section_button section">
-        <button id="button" type="button">Добавить</button>
+        <button  id="button" type="button">Добавить</button>
       </section>
     </div>
-    <script defer type="module" src="./javaScript/index.js"></script>
+    <script defer type="module" src="../javaScript/scriptAddAddress/index.js"></script>
   </body>
 </html>

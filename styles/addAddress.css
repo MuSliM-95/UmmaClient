@@ -63,6 +63,10 @@ input {
   z-index: 100;
 }
 
+.section_select_none {
+  display: none;
+}
+
 #addressInput {
   width: 100%;
   outline: none;
