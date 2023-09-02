@@ -48,8 +48,6 @@ async function init() {
   }
 }
 
-
-
 mapButton.addEventListener("click", () => {
   console.log(!addressInput.value);
   if(!addressInput.value) {

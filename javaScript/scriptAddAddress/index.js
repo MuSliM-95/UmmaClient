@@ -3,7 +3,7 @@ import "./api.js";
 import { addAddress, getAddress } from "./api.js";
 import { showAddressesDropdown } from "./options.js";
 
-const checkboxesPlaces = document.querySelectorAll('input[name="place"]');
+const dropDownList = document.querySelector('#drop-down_list');
 const checkboxesPrayer = document.querySelectorAll('input[name="places_for_prayer"]');
 const addressInput = document.getElementById("addressInput");
 const select = document.getElementById("select");
@@ -15,22 +15,14 @@ const nameInput = document.getElementById("name");
 export let formData = new FormData();
 let timer;
 
-// Настроил список с checkbox, только с одним выбором.
-checkboxesPlaces.forEach((checkbox) => {
-  checkbox.addEventListener("click", () => {
-    formData.delete("place");
-    formData.append("place", checkbox.dataset.place);
+// Настроил выпадающий список.
+function onChange() {
+  const value = dropDownList.value;
+  formData.delete("place");
+  formData.append("place", value);
+}
+dropDownList.onchange = onChange;
 
-    checkboxesPlaces.forEach((input) => {
-      if (input !== checkbox) {
-        input.checked = !checkbox.checked;
-        input.disabled = !checkbox.checked;
-      } else {
-        input.disabled = checkbox.checked;
-      }
-    });
-  });
-});
 
 // Настроил список с checkbox, только с одним выбором.
 checkboxesPrayer.forEach((checkbox) => {
@@ -106,10 +98,7 @@ console.log(coords);
 // Сброс значений формы.
 export function clearForm() {
   nameInput.value = "";
-  checkboxesPlaces.forEach((checkbox) => {
-    checkbox.checked = false;
-    checkbox.disabled = false;
-  });
+  dropDownList.value = ""
   checkboxesPrayer.forEach((checkbox) => {
     checkbox.checked = false;
     checkbox.disabled = false;
