@@ -1,4 +1,5 @@
 import { getAddresses } from "./api.js";
+import { filterAddressesByVisibleBounds } from "./options.js";
 
 ymaps.ready(init);
 
@@ -13,7 +14,13 @@ async function init() {
     zoom: 12,
   });
 
- await addresses?.forEach((el) => {
+  const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
+  addAddressMaps(visibleAddresses)
+
+ async function addAddressMaps(addAddress) {
+  console.log(addAddress);
+  await addAddress?.forEach((el) => {
+
     const myPlacemark =  new ymaps.Placemark(el.location, {
       balloonContent: `
       <div class="balloon_content" >
@@ -44,6 +51,20 @@ async function init() {
     if(el.place === "Автозапчасти, сервис...") return "../../image/4886967921672192.jpg"
     if(el.place === "Продуктовый Магазин") return "../../image/supermarket-512-e1443509745315.png"
   }
+
+  })
+ }
+
+
+  myMap.events.add("boundschange", function () {
+    const updatedVisibleAddresses = filterAddressesByVisibleBounds(
+      myMap,
+      addresses
+    );
+
+    myMap.geoObjects.removeAll();
+
+    addAddressMaps(updatedVisibleAddresses)
 
   })
   
