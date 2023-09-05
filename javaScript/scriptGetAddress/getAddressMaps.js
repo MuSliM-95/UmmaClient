@@ -24,7 +24,7 @@ async function init() {
     const myPlacemark =  new ymaps.Placemark(el.location, {
       balloonContent: `
       <div class="balloon_content" >
-      <img class="balloon_image" src="http://localhost:5000/${el.photo?.image || "scale_1200.webp"}" "style="max-width: 20px; max-height: 20px;"/>
+      <img class="balloon_image" src="http://80.90.190.66:5005/${el.photo?.image || "scale_1200.webp"}" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
       <strong>${el.title}</strong>
       <em>${el.place}</em>

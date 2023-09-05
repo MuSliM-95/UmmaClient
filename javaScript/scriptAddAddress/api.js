@@ -5,7 +5,7 @@ const { token, botToken, chatId } = await getTokenAndId();
 // Получение токенов и id с сервера.
 async function getTokenAndId() {
   try {
-    const res = await fetch("http://localhost:5000/admin/info");
+    const res = await fetch("http://80.90.190.66:5005/admin/info");
     const data = await res.json();
 
     return data[0];
@@ -78,7 +78,7 @@ export async function addAddress(nameInput, photo, formData) {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/data`, {
+    const res = await fetch(`http://80.90.190.66:5005/data`, {
       method: "POST",
       body: formData,
     });
