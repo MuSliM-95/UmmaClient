@@ -45,11 +45,11 @@ async function init() {
    myMap.geoObjects.add(myPlacemark);
 
    function settingicon() {
-    if(el.place === "Мечеть, молельня...") return "../../image/free-icon-mosque-7720545.png"
-    if(el.place === "Кафе, столовая, ресторан") return "../../image/restaurant_location_icon_146860.png"
-    if(el.place === "Здоровье, аптека, стоматология") return "../../image/4dlnngicuab8_64.png"
-    if(el.place === "Автозапчасти, сервис...") return "../../image/4886967921672192.jpg"
-    if(el.place === "Продуктовый Магазин") return "../../image/supermarket-512-e1443509745315.png"
+    if(el.place === "Мечеть, молельня...") return "../../images/free-icon-mosque-7720545.png"
+    if(el.place === "Кафе, столовая, ресторан") return "../../images/restaurant_location_icon_146860.png"
+    if(el.place === "Здоровье, аптека, стоматология") return "../../images/4dlnngicuab8_64.png"
+    if(el.place === "Автозапчасти, сервис...") return "../../images/4886967921672192.jpg"
+    if(el.place === "Продуктовый Магазин") return "../../images/supermarket-512-e1443509745315.png"
   }
 
   })
