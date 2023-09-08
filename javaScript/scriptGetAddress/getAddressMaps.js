@@ -24,7 +24,7 @@ async function init() {
     const myPlacemark =  new ymaps.Placemark(el.location, {
       balloonContent: `
       <div class="balloon_content" >
-      <img class="balloon_image" src="http://80.90.190.66:5005/${el.photo?.image || "scale_1200.webp"}" "style="max-width: 20px; max-height: 20px;"/>
+      <img class="balloon_image" src="http://testjavascript.ru:5000/${el.photo?.image || "scale_1200.webp"}" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
       <strong>${el.title}</strong>
       <em>${el.place}</em>
@@ -45,11 +45,11 @@ async function init() {
    myMap.geoObjects.add(myPlacemark);
 
    function settingicon() {
-    if(el.place === "Мечеть, молельня...") return "../../images/free-icon-mosque-7720545.png"
-    if(el.place === "Кафе, столовая, ресторан") return "../../images/restaurant_location_icon_146860.png"
-    if(el.place === "Здоровье, аптека, стоматология") return "../../images/4dlnngicuab8_64.png"
-    if(el.place === "Автозапчасти, сервис...") return "../../images/4886967921672192.jpg"
-    if(el.place === "Продуктовый Магазин") return "../../images/supermarket-512-e1443509745315.png"
+    if(el.place === "Мечеть, молельня...") return "/images/free-icon-mosque-7720545.png"
+    if(el.place === "Кафе, столовая, ресторан") return "/images/restaurant_location_icon_146860.png"
+    if(el.place === "Здоровье, аптека, стоматология") return "/images/4dlnngicuab8_64.png"
+    if(el.place === "Автозапчасти, сервис...") return "/images/4886967921672192.jpg"
+    if(el.place === "Продуктовый Магазин") return "/images/supermarket-512-e1443509745315.png"
   }
 
   })
