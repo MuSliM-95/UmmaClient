@@ -38,6 +38,7 @@ async function init() {
     iconLayout: 'default#image',
     iconImageHref: settingicon(),
     iconImageSize: [30, 30],
+    openEmptyBalloon: false,
   })
   myPlacemark.events.add("click", () => {
     pathAddress(el.location)
