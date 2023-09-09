@@ -1,7 +1,7 @@
 
 export async function getAddresses() {
     try {
-        const res  = await fetch("http://testjavascript.ru:5000/addresses")
+        const res  = await fetch("https://testjavascript.ru/addresses")
         const data = await res.json()
         if(data) {
             const arrLocation = data.map(address => address.location)
