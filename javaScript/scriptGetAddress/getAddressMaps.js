@@ -67,9 +67,11 @@ async function init() {
           return "/UmmaClient/images/4dlnngicuab8_64.png";
         if (el.place === "Автозапчасти, сервис...")
           return "/UmmaClient/images/4886967921672192.jpg";
-        if (el.place === "Продуктовый Магазин")
+        if (el.place === "Продуктовый Магазин" || el.place === "Исламский магазин")
           return "/UmmaClient/images/supermarket-512-e1443509745315.png";
-      }
+        if(el.place === "Мусульманский отель, хостел") 
+          return "/UmmaClient/images/kP-1K4qVqT4.jpg"
+        }
     });
   }
 
