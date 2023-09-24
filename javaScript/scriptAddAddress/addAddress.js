@@ -8,7 +8,7 @@ const mapButton = document.getElementById("mapButton")
 let firstGeoObject
 
 
-async function init() {
+export async function init() {
 
     const location = await getMyLocation()
     await getAddressFromCoordinates(location)
@@ -49,10 +49,6 @@ async function init() {
 }
 
 mapButton.addEventListener("click", () => {
-  console.log(!addressInput.value);
-  if(!addressInput.value) {
-    ymaps.ready(init);
-  }
     mapSection.classList.toggle("section_map_none")
    
 })

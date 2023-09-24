@@ -1,6 +1,6 @@
 import { clearForm } from "./index.js";
 
-const { token, botToken, chatId } = await getTokenAndId();
+const { token, chatId } = await getTokenAndId();
 
 // Получение токенов и id с сервера.
 async function getTokenAndId() {
@@ -14,35 +14,10 @@ async function getTokenAndId() {
   }
 }
 
-// Получаем адреcов по данным, введенных в input.
-export async function getAddress(text) {
-  try {
-    const res = await fetch(
-      "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify({ query: text }),
-      }
-    );
-    const address = await res.json();
-
-    if (address) {
-      return address;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 // Отправка сообщения c id в Telegram.
 export async function sendMessageTelegram(data) {
   try {
-    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +79,6 @@ export async function getMyLocation() {
         resolve([coords.latitude, coords.longitude])
       }
       function error({ message }) {
-        console.log(message);
         reject(message)
       }
     });

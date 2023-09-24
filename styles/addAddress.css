@@ -53,25 +53,11 @@ input {
   justify-content: center;
 }
 
-#select {
-  box-shadow: 1px 1px 1px 1px grey;
-  background-color: #fff;
-  border-radius: 2px;
-  font-size: 14px;
-  padding: 5px;
-  width: 93%;
-  z-index: 100;
-}
-
-.section_select_none {
-  display: none;
-}
-
 #addressInput {
-  width: 100%;
+  width: 85%;
   outline: none;
 }
 
 .section_mapButton {
-  width: 6%;
+  width: 15%;
 }

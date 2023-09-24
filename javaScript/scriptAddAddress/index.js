@@ -1,19 +1,18 @@
 import "./addAddress.js";
+import { init } from "./addAddress.js";
 import "./api.js";
-import { addAddress, getAddress } from "./api.js";
-import { showAddressesDropdown } from "./options.js";
+import { addAddress } from "./api.js";
 
 const dropDownList = document.querySelector('#drop-down_list');
 const checkboxesPrayer = document.querySelectorAll('input[name="places_for_prayer"]');
 const addressInput = document.getElementById("addressInput");
-const select = document.getElementById("select");
 const submitButton = document.getElementById("button");
 const photo = document.getElementById("file");
 const nameInput = document.getElementById("name");
 
+ymaps.ready(init);
 
 export let formData = new FormData();
-let timer;
 
 // Настроил выпадающий список.
 function onChange() {
@@ -42,52 +41,20 @@ checkboxesPrayer.forEach((checkbox) => {
 });
 
 
-
-// Вызываем функцию getAddress и передаем input value чтобы получить адреса.
-addressInput.addEventListener("input", (e) => {
-  const inputValue = e.target.value;
-
-  clearTimeout(timer);
-
-  timer = setTimeout(async () => {
-  const address = await getAddress(inputValue);
-    if (address) {
-      dataProcessing(address)
-      showAddressesDropdown(address, select);
-    }
-  }, 500);
-});
-
 // function для обработки данных с адреса.
 export function dataProcessing(address, coords) {
-console.log(address);
-console.log(coords);
   formData.delete("region");
   formData.delete("city");
   formData.delete("location");
   formData.delete("address");
-  
-// Есть два способа получение адреса: с сервиса Dadata и с Яндекс.Карты.
+
 
 // Обработка данных с Яндекс.Карты
-  const regionFromMaps = address?.administrativeAreas && address?.administrativeAreas[0]
-  const cityDataFromMaps = address?.localities && address?.localities[0] || address?.premise
-  const locationFromMaps = coords
-  const addressFromMaps =  address?.addressLine
-  
-// Обработка данных от сервиса Dadata
-  const DataFromDadata = address?.suggestions && address?.suggestions[0]?.data;
-  const cityDataFromDadata = DataFromDadata?.settlement_with_type || DataFromDadata?.city_with_type
-  const locationFromDadata = [DataFromDadata?.geo_lat, DataFromDadata?.geo_lon]
-  const regionFromDadata = DataFromDadata?.region + ` ${DataFromDadata?.region_type_full}`
-  const addressFromDadata = address?.suggestions && address?.suggestions[0]?.value
-
-// Получаем данные в зависимости от выбранного способа пользователям 
-  const region = regionFromMaps || regionFromDadata
-  const city = cityDataFromDadata || cityDataFromMaps || "Не указан";
-  const location = locationFromMaps ||  locationFromDadata
-  const addressForm = addressFromMaps || addressFromDadata
-  
+  const region = address?.administrativeAreas && address?.administrativeAreas[0]
+  const city = address?.localities && address?.localities[0] || address?.premise || "Не указан";
+  const location = coords
+  const addressForm =  address?.addressLine
+    
   formData.append("region", region);
   formData.append("city", city);
   formData.append("location", location);
@@ -105,7 +72,6 @@ export function clearForm() {
   });
   photo.value = "";
   addressInput.value = "";
-  select.style.display = "none";
   formData = new FormData();
 }
 
