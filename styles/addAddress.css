@@ -72,7 +72,7 @@ input {
 .section_mapButton::before {
   content: "";
   display: block;
-  background-image: url("../images/pngwing.com (4).png");
+  background-image: url("/UmmaClient/images/pngwing.com (4).png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
   width: 20px;
