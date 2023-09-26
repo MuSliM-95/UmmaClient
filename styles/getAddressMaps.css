@@ -3,10 +3,6 @@
     width: 100vh;
 }
 
-#map {
-    position: absolute;
-}
-
 .balloon_content {
     display: flex;
     flex-direction: column;

@@ -12,13 +12,9 @@ async function init() {
   const myMap = await new ymaps.Map("map", {
     center: location,
     zoom: 12,
-    // autoFitToViewport:"none",
   });
   
-  const mapControls = await myMap.controls.get('smallZoomControl');
-  await mapControls?.events.add(['mousedown', 'keydown'], function(e) {
-    e.preventDefault();
-  }, true);
+  myMap.behaviors.disable('scrollZoom');
 
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
   addAddressMaps(visibleAddresses);
