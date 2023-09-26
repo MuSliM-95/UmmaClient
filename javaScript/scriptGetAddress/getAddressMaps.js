@@ -12,10 +12,10 @@ async function init() {
   const myMap = await new ymaps.Map("map", {
     center: location,
     zoom: 12,
-    autoFitToViewport:"none",
+    // autoFitToViewport:"none",
   });
   
-  const mapControls = await map.controls.get('smallZoomControl');
+  const mapControls = await myMap.controls.get('smallZoomControl');
   mapControls.events.add(['mousedown', 'keydown'], function(e) {
     e.preventDefault();
   }, false);
