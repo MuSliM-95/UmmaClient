@@ -14,6 +14,10 @@ async function init() {
     zoom: 12,
   });
 
+  myMap.events.add(['keydown'], function(e) {
+    e.preventDefault();
+  }, false);
+
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
   addAddressMaps(visibleAddresses);
 
