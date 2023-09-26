@@ -18,7 +18,7 @@ async function init() {
   const mapControls = await myMap.controls.get('smallZoomControl');
   await mapControls?.events.add(['mousedown', 'keydown'], function(e) {
     e.preventDefault();
-  }, false);
+  }, true);
 
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
   addAddressMaps(visibleAddresses);
