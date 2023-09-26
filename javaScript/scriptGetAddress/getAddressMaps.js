@@ -12,6 +12,7 @@ async function init() {
   const myMap = await new ymaps.Map("map", {
     center: location,
     zoom: 12,
+    autoFitToViewport:"none",
   });
   
   const mapControls = map.controls.get('smallZoomControl');
