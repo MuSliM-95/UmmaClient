@@ -15,7 +15,7 @@ async function init() {
     autoFitToViewport:"none",
   });
   
-  const mapControls = map.controls.get('smallZoomControl');
+  const mapControls = await map.controls.get('smallZoomControl');
   mapControls.events.add(['mousedown', 'keydown'], function(e) {
     e.preventDefault();
   }, false);
