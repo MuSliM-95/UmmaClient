@@ -13,8 +13,9 @@ async function init() {
     center: location,
     zoom: 12,
   });
-
-  myMap.events.add(['keydown'], function(e) {
+  
+  const mapControls = map.controls.get('smallZoomControl');
+  mapControls.events.add(['mousedown', 'keydown'], function(e) {
     e.preventDefault();
   }, false);
 
