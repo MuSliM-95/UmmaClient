@@ -57,6 +57,7 @@ async function init() {
           iconLayout: "default#image",
           iconImageHref: settingicon(),
           iconImageSize: [30, 30],
+          searchControlLayout: isSearchPanelOpen
       
         }
       );
