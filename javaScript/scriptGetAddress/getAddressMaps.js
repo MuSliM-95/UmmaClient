@@ -13,8 +13,18 @@ async function init() {
     center: location,
     zoom: 12,
   });
+
+  const isSearchPanelOpen = ymaps.templateLayoutFactory.createClass('$[isOpen]', {
+    build: function() {
+        isSearchPanelOpen.superclass.build.call(this);
+        const isOpen = this.getData().state.get('isOpen');
+
+        // Выводим сообщение в консоль
+        console.log("Панель поиска открыта: " + isOpen);
+    }
+});
+
   
-  myMap.behaviors.disable('scrollZoom');
 
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
   addAddressMaps(visibleAddresses);
