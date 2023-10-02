@@ -15,12 +15,12 @@ async function init() {
     zoom: 12,
   });
 
-  const isSearchPanelOpen = ymaps.templateLayoutFactory.createClass('$[isOpen]', {
+  await myMap.templateLayoutFactory.createClass('$[isOpen]', {
     build: function() {
         isSearchPanelOpen.superclass.build.call(this);
         isSearchPanelIsOpen = this.getData().state.get('isOpen');
     }
-});
+  });
 
   
 
