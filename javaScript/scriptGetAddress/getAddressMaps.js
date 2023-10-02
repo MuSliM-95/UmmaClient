@@ -8,6 +8,7 @@ async function init() {
   const location = await getLocationData.geoObjects.position;
   const addresses = await getAddresses();
   let multiRoute;
+  let isSearchPanelIsOpen = false;
 
   const myMap = await new ymaps.Map("map", {
     center: location,
@@ -17,10 +18,11 @@ async function init() {
   const isSearchPanelOpen = ymaps.templateLayoutFactory.createClass('$[isOpen]', {
     build: function() {
         isSearchPanelOpen.superclass.build.call(this);
-        const isOpen = this.getData().state.get('isOpen');
+        isSearchPanelIsOpen = this.getData().state.get('isOpen');
 
         // Выводим сообщение в консоль
         console.log("Панель поиска открыта: " + isOpen);
+        multiRoute = isOpen
     }
 });
 
@@ -30,7 +32,6 @@ async function init() {
   addAddressMaps(visibleAddresses);
 
   async function addAddressMaps(addAddress) {
-    console.log(addAddress);
     await addAddress?.forEach((el) => {
       const myPlacemark = new ymaps.Placemark(
         el.location,
@@ -68,7 +69,9 @@ async function init() {
       myMap.geoObjects.add(myPlacemark);
 
       myPlacemark.events.add('balloonclose', () => {
-        pathAddress()
+        if(!isSearchPanelIsOpen) {
+          pathAddress()
+        }
     });
 
       function settingicon() {
