@@ -19,10 +19,6 @@ async function init() {
     build: function() {
         isSearchPanelOpen.superclass.build.call(this);
         isSearchPanelIsOpen = this.getData().state.get('isOpen');
-
-        // Выводим сообщение в консоль
-        console.log("Панель поиска открыта: " + isOpen);
-        multiRoute = isOpen
     }
 });
 
