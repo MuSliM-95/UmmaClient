@@ -62,9 +62,9 @@ async function init() {
       myMap.geoObjects.add(myPlacemark);
 
       myPlacemark.events.add('balloonclose', () => {
-        if(!isSearchPanelIsOpen) {
+        // if(!isSearchPanelIsOpen) {
           pathAddress()
-        }
+        // }
       });
 
       function settingicon() {
