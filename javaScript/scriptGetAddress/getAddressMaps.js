@@ -58,10 +58,8 @@ async function init() {
       myMap.geoObjects.add(myPlacemark);
 
       myPlacemark.events.add('balloonclose', () => {
-        // if(!isSearchPanelIsOpen) {
           pathAddress()
-        // }
-    });
+      });
 
       function settingicon() {
         if (el.place === "Мечеть, молельня...")
@@ -88,7 +86,7 @@ async function init() {
 
     if (!multiRoute) {
       myMap.geoObjects.removeAll();
-      addAddressMaps(updatedVisibleAddresses);
+      // addAddressMaps(updatedVisibleAddresses);
     }
   });
 
