@@ -50,7 +50,6 @@ async function init() {
           iconLayout: "default#image",
           iconImageHref: settingicon(),
           iconImageSize: [30, 30],
-          // searchControlLayout: isSearchPanelOpen
       
         }
       );
@@ -62,7 +61,7 @@ async function init() {
 
       myPlacemark.events.add('balloonclose', () => {
         // if(!isSearchPanelIsOpen) {
-          // pathAddress()
+          pathAddress()
         // }
       });
 
@@ -85,17 +84,17 @@ async function init() {
 
  await addAddressMaps(addresses);
 
-  // myMap.events.add("boundschange", function () {
-  //   const updatedVisibleAddresses = filterAddressesByVisibleBounds(
-  //     myMap,
-  //     addresses
-  //   );
+  myMap.events.add("boundschange", function () {
+    const updatedVisibleAddresses = filterAddressesByVisibleBounds(
+      myMap,
+      addresses
+    );
 
-  //   if (!multiRoute) {
-  //     myMap.geoObjects.removeAll();
-  //     // addAddressMaps(updatedVisibleAddresses);
-  //   }
-  // });
+    if (!multiRoute || !isSearchPanelIsOpen) {
+      myMap.geoObjects.removeAll();
+      addAddressMaps(updatedVisibleAddresses);
+    }
+  });
 
   async function pathAddress(endLocation) {
     if (multiRoute) {
