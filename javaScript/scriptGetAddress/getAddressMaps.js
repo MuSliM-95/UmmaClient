@@ -1,28 +1,26 @@
 import { getAddresses } from "./api.js";
 import { filterAddressesByVisibleBounds } from "./options.js";
+const inputSearch = document.querySelector(".ymaps-2-1-79-searchbox-input__input")
 
 ymaps.ready(init);
 
 async function init() {
-
+  inputSearch
   const getLocationData = await ymaps.geolocation.get();
   const location = await getLocationData.geoObjects.position;
   const addresses = await getAddresses();
   let multiRoute;
   let isSearchPanelIsOpen = false;
-  
+
+
   const myMap = await new ymaps.Map("map", {
     center: location,
     zoom: 12,
   });
 
-  // // const inputSearch = await document.querySelector(".ymaps-2-1-79-searchbox-input__input")
-  // const buttonSearch = document.querySelector(".ymaps-2-1-79-float-button")
-  // // console.log(inputSearch);
-  // console.log(buttonSearch);
-
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
-  
+  addAddressMaps(visibleAddresses);
+
   async function addAddressMaps(addAddress) {
     await addAddress?.forEach((el) => {
       const myPlacemark = new ymaps.Placemark(
@@ -63,7 +61,7 @@ async function init() {
         // if(!isSearchPanelIsOpen) {
           pathAddress()
         // }
-      });
+    });
 
       function settingicon() {
         if (el.place === "Мечеть, молельня...")
@@ -82,15 +80,13 @@ async function init() {
     });
   }
 
- await addAddressMaps(addresses);
-
   myMap.events.add("boundschange", function () {
     const updatedVisibleAddresses = filterAddressesByVisibleBounds(
       myMap,
       addresses
     );
 
-    if (!multiRoute || !isSearchPanelIsOpen) {
+    if (!multiRoute) {
       myMap.geoObjects.removeAll();
       addAddressMaps(updatedVisibleAddresses);
     }
