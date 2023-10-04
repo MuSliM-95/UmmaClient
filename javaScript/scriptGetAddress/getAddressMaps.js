@@ -22,7 +22,7 @@ async function init() {
   // console.log(buttonSearch);
 
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
-  addAddressMaps(visibleAddresses);
+  addAddressMaps(addresses);
 
   async function addAddressMaps(addAddress) {
     await addAddress?.forEach((el) => {
@@ -65,7 +65,7 @@ async function init() {
         if(!isSearchPanelIsOpen) {
           pathAddress()
         }
-    });
+      });
 
       function settingicon() {
         if (el.place === "Мечеть, молельня...")
