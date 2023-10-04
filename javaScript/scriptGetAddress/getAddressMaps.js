@@ -22,8 +22,7 @@ async function init() {
   // console.log(buttonSearch);
 
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
-  addAddressMaps(addresses);
-
+  
   async function addAddressMaps(addAddress) {
     await addAddress?.forEach((el) => {
       const myPlacemark = new ymaps.Placemark(
@@ -83,6 +82,8 @@ async function init() {
         }
     });
   }
+
+ await addAddressMaps(addresses);
 
   // myMap.events.add("boundschange", function () {
   //   const updatedVisibleAddresses = filterAddressesByVisibleBounds(
