@@ -4,25 +4,23 @@ import { filterAddressesByVisibleBounds } from "./options.js";
 ymaps.ready(init);
 
 async function init() {
+
+  // inputSearch.setAttribute("autocomplete", "none")
   const getLocationData = await ymaps.geolocation.get();
   const location = await getLocationData.geoObjects.position;
   const addresses = await getAddresses();
   let multiRoute;
   let isSearchPanelIsOpen = false;
-
+  
   const myMap = await new ymaps.Map("map", {
     center: location,
     zoom: 12,
   });
 
-  const isSearchPanelOpen = new ymaps.templateLayoutFactory.createClass('$[isOpen]', {
-    build: function() {
-        isSearchPanelOpen.superclass.build.call(this);
-        isSearchPanelIsOpen = this.getData().state.get('isOpen');
-    }
-  });
-
-  
+  // // const inputSearch = await document.querySelector(".ymaps-2-1-79-searchbox-input__input")
+  // const buttonSearch = document.querySelector(".ymaps-2-1-79-float-button")
+  // // console.log(inputSearch);
+  // console.log(buttonSearch);
 
   const visibleAddresses = filterAddressesByVisibleBounds(myMap, addresses);
   addAddressMaps(visibleAddresses);
@@ -95,7 +93,7 @@ async function init() {
 
     if (!multiRoute) {
       myMap.geoObjects.removeAll();
-      addAddressMaps(updatedVisibleAddresses);
+      // addAddressMaps(updatedVisibleAddresses);
     }
   });
 
