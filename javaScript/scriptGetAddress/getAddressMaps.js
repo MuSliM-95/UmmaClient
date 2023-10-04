@@ -51,7 +51,7 @@ async function init() {
           iconLayout: "default#image",
           iconImageHref: settingicon(),
           iconImageSize: [30, 30],
-          searchControlLayout: isSearchPanelOpen
+          // searchControlLayout: isSearchPanelOpen
       
         }
       );
@@ -63,7 +63,7 @@ async function init() {
 
       myPlacemark.events.add('balloonclose', () => {
         // if(!isSearchPanelIsOpen) {
-          pathAddress()
+          // pathAddress()
         // }
       });
 
