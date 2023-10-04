@@ -5,7 +5,6 @@ ymaps.ready(init);
 
 async function init() {
 
-  // inputSearch.setAttribute("autocomplete", "none")
   const getLocationData = await ymaps.geolocation.get();
   const location = await getLocationData.geoObjects.position;
   const addresses = await getAddresses();
@@ -85,17 +84,17 @@ async function init() {
     });
   }
 
-  myMap.events.add("boundschange", function () {
-    const updatedVisibleAddresses = filterAddressesByVisibleBounds(
-      myMap,
-      addresses
-    );
+  // myMap.events.add("boundschange", function () {
+  //   const updatedVisibleAddresses = filterAddressesByVisibleBounds(
+  //     myMap,
+  //     addresses
+  //   );
 
-    if (!multiRoute) {
-      myMap.geoObjects.removeAll();
-      // addAddressMaps(updatedVisibleAddresses);
-    }
-  });
+  //   if (!multiRoute) {
+  //     myMap.geoObjects.removeAll();
+  //     // addAddressMaps(updatedVisibleAddresses);
+  //   }
+  // });
 
   async function pathAddress(endLocation) {
     if (multiRoute) {
