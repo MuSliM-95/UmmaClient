@@ -104,7 +104,7 @@ async function init() {
   //       }
   //       );
         
-  //    return  myMap.geoObjects.add(multiRoute);
+       myMap.geoObjects.add(multiRoute);
   //   }
   //    multiRoute = null
   // }
