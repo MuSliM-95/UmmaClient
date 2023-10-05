@@ -4,7 +4,6 @@ import { filterAddressesByVisibleBounds } from "./options.js";
 ymaps.ready(init);
 
 async function init() {
-  inputSearch
   const getLocationData = await ymaps.geolocation.get();
   const location = await getLocationData.geoObjects.position;
   const addresses = await getAddresses();
