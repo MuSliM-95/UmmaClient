@@ -3,9 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=6d7ebfe2-bf91-441d-8290-5cc784314608&lang=ru_RU" type="text/javascript">
-    </script>
-    <link rel="stylesheet" href="/UmmaClient/styles/addAddress.css" />
+    <script
+      defer
+      src="https://api-maps.yandex.ru/2.1/?apikey=6d7ebfe2-bf91-441d-8290-5cc784314608&lang=ru_RU"
+      type="text/javascript"
+    ></script>
+    <link rel="stylesheet" href="/styles/addAddress.css" />
     <title>Document</title>
   </head>
   <body>
@@ -26,6 +29,14 @@
           <option>Исламский магазин</option>
           <option>Мусульманский отель, хостел</option>
         </select>
+      </section>
+      <section class="section">
+        <h4>Укажите время работы</h4>
+        <div class="section_time">
+          <input placeholder="00:00" type="time" />
+          <p>до</p>
+          <input placeholder="00:00" type="time" />
+        </div>
       </section>
       <section class="section">
         <h4>Есть места для молитвы</h4>
@@ -83,19 +94,25 @@
         <input id="file" type="file" />
       </section>
       <section class="section" id="addressSection">
-          <h4>Укажите адрес</h4>
-          <div class="section_div_address" style="display: flex">
-            <input id="addressInput" type="text" autocomplete="none" />
-            <button class="section_mapButton" id="mapButton" type="button">Карта</button>
-          </div>
+        <h4>Укажите адрес</h4>
+        <div class="section_div_address" style="display: flex">
+          <input id="addressInput" type="text" autocomplete="none" />
+          <button class="section_mapButton" id="mapButton" type="button">
+            Карта
+          </button>
+        </div>
       </section>
       <section class="section section_map_none" id="mapSection">
         <div id="map" style="width: 100%; height: 400px"></div>
-      </section>      
+      </section>
       <section class="section_button section">
-        <button  id="button" type="button">Добавить</button>
+        <button id="button" type="button">Добавить</button>
       </section>
     </div>
-    <script defer type="module" src="/UmmaClient/javaScript/scriptAddAddress/index.js"></script>
+    <script
+      defer
+      type="module"
+      src="/javaScript/scriptAddAddress/index.js"
+    ></script>
   </body>
 </html>

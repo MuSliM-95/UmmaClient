@@ -1,7 +1,15 @@
 
-export async function getAddresses() {
+export async function getAddresses(map) {
+    const bounds = await map.getBounds()
+    const location = {
+        topLeft: bounds[0],
+        bottomRight: bounds[1],
+    }
+    const jsonLocation = JSON.stringify(location)
+
+    console.log(bounds);
     try {
-        const res  = await fetch("https://testjavascript.ru/addresses")
+        const res  = await fetch(`http://localhost:5000/addresses/${jsonLocation}`)
         const data = await res.json()
         if(data) {           
             return data
@@ -10,3 +18,4 @@ export async function getAddresses() {
         console.log(error.message);
     }
 }
+

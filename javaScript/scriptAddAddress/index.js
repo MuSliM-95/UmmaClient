@@ -9,10 +9,14 @@ const addressInput = document.getElementById("addressInput");
 const submitButton = document.getElementById("button");
 const photo = document.getElementById("file");
 const nameInput = document.getElementById("name");
+const timeInput = document.querySelectorAll('input[type="time"]')
+
 
 ymaps.ready(init);
 
 export let formData = new FormData();
+
+console.log(timeInput);
 
 // Настроил выпадающий список.
 function onChange() {
@@ -65,6 +69,9 @@ export function dataProcessing(address, coords) {
 // Сброс значений формы.
 export function clearForm() {
   nameInput.value = "";
+  const [input1, input2] = timeInput
+  input1.value = ""
+  input2.value = ""
   dropDownList.value = ""
   checkboxesPrayer.forEach((checkbox) => {
     checkbox.checked = false;
@@ -80,5 +87,6 @@ addAddress(
     nameInput,
     photo,
     formData,
+    timeInput
   )
 );

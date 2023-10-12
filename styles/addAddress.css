@@ -84,3 +84,9 @@ input {
   align-items: center;
 
 }
+
+.section_time {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
