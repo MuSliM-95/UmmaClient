@@ -5,7 +5,7 @@ const { token, chatId } = await getTokenAndId();
 // Получение токенов и id с сервера.
 async function getTokenAndId() {
   try {
-    const res = await fetch("http://localhost:5000/admin/info");
+    const res = await fetch("https://testjavascript.ru/admin/info");
     const data = await res.json();
 
     return data[0];
@@ -58,7 +58,7 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
   }
 
   try {
-    const res = await fetch(`http://localhost:5000/data`, {
+    const res = await fetch(`https://testjavascript.ru/data`, {
       method: "POST",
       body: formData,
     });
