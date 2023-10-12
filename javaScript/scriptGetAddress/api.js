@@ -7,7 +7,6 @@ export async function getAddresses(map) {
     }
     const jsonLocation = JSON.stringify(location)
 
-    console.log(bounds);
     try {
         const res  = await fetch(`https://testjavascript.ru/addresses/${jsonLocation}`)
         const data = await res.json()
