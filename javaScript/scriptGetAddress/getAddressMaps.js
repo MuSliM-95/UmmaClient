@@ -23,7 +23,7 @@ async function init() {
         {
           balloonContent: `
       <div class="balloon_content" >
-      <img class="balloon_image" src="http://localhost:5000/${
+      <img class="balloon_image" src="https://testjavascript.ru/${
         el.photo?.image || "scale_1200.webp"
       }" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
