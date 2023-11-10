@@ -12,12 +12,9 @@ const nameInput = document.getElementById("name");
 const timeInput = document.querySelectorAll('input[type="time"]')
 
 
-
 ymaps.ready(init);
 
 export let formData = new FormData();
-
-console.log(timeInput);
 
 // Настроил выпадающий список.
 function onChange() {

@@ -6,6 +6,8 @@ async function init() {
   const getLocationData = await ymaps.geolocation.get();
   const location = getLocationData.geoObjects.position;
   let multiRoute;
+
+  console.log(location);
   
   const myMap =  new ymaps.Map("map", {
     center: location,
@@ -19,11 +21,11 @@ async function init() {
    function addAddressMaps(addAddress) {
      addAddress?.forEach((el) => {
       const myPlacemark =  new ymaps.Placemark(
-        el.location,
+        [el.latitude, el.longitude],
         {
           balloonContent: `
       <div class="balloon_content" >
-      <img class="balloon_image" src="https://testjavascript.ru/${
+      <img class="balloon_image" src="http://localhost:5000/${
         el.photo?.image || "scale_1200.webp"
       }" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
@@ -33,7 +35,7 @@ async function init() {
       <em><strong>Время работы: </strong>${el.time}</em>
       <em>${el.address}</em>
       <a href="https://yandex.ru/maps/?rtext=${location}~${
-            el.location
+            [el.latitude, el.longitude]
           }&rtt=auto">Проложить путь</a>
       </div>
       </div>

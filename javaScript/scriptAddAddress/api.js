@@ -1,38 +1,5 @@
 import { clearForm } from "./index.js";
 
-const { token, chatId } = await getTokenAndId();
-
-// Получение токенов и id с сервера.
-async function getTokenAndId() {
-  try {
-    const res = await fetch("https://testjavascript.ru/admin/info");
-    const data = await res.json();
-
-    return data[0];
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-// Отправка сообщения c id в Telegram.
-export async function sendMessageTelegram(data) {
-  try {
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: `id: ${data?._id}`,
-        parse_mode: "HTML",
-      }),
-    });
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 // Функция для отправки формы.
 export async function addAddress(nameInput, photo, formData, timeInput) {
   const name = nameInput.value;
@@ -56,17 +23,16 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
   if (!name || !region || !city || !place || !prayer || !address || !location || !time) {
     return;
   }
-
   try {
-    const res = await fetch(`https://testjavascript.ru/data`, {
+    const res = await fetch(`http://localhost:5000/data`, {
       method: "POST",
       body: formData,
     });
 
     const data = await res.json();
+    console.log(data);
     if (data) {
       clearForm();
-      await sendMessageTelegram(data);
     }
   } catch (error) {
     console.error("Ошибка при отправке HTML-файла:", error);

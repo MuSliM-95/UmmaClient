@@ -8,7 +8,7 @@ export async function getAddresses(map) {
     const jsonLocation = JSON.stringify(location)
 
     try {
-        const res  = await fetch(`https://testjavascript.ru/addresses/${jsonLocation}`)
+        const res  = await fetch(`http://localhost:5000/addresses/${jsonLocation}`)
         const data = await res.json()
         if(data) {           
             return data
