@@ -24,7 +24,7 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
     return;
   }
   try {
-    const res = await fetch(`https://umma-maps.ru/data`, {
+    const res = await fetch(`https://umma-maps.store/data`, {
       method: "POST",
       body: formData,
     });

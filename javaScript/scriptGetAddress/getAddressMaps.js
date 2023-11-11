@@ -25,7 +25,7 @@ async function init() {
         {
           balloonContent: `
       <div class="balloon_content" >
-      <img class="balloon_image" src="https://umma-maps.ru/${
+      <img class="balloon_image" src="https://umma-maps.store/${
         el.photo?.image || "scale_1200.webp"
       }" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
@@ -61,17 +61,17 @@ async function init() {
 
       function settingicon() {
         if (el.place === "Мечеть, молельня...")
-          return "/UmmaClient/images/free-icon-mosque-7720545.png";
+          return "/images/free-icon-mosque-7720545.png";
         if (el.place === "Кафе, столовая, ресторан")
-          return "/UmmaClient/images/restaurant_location_icon_146860.png";
+          return "/images/restaurant_location_icon_146860.png";
         if (el.place === "Здоровье, аптека, стоматология")
-          return "/UmmaClient/images/4dlnngicuab8_64.png";
+          return "/images/4dlnngicuab8_64.png";
         if (el.place === "Автозапчасти, сервис...")
-          return "/UmmaClient/images/4886967921672192.jpg";
+          return "/images/4886967921672192.jpg";
         if (el.place === "Продуктовый Магазин" || el.place === "Исламский магазин")
-          return "/UmmaClient/images/supermarket-512-e1443509745315.png";
+          return "/images/supermarket-512-e1443509745315.png";
         if(el.place === "Мусульманский отель, хостел") 
-          return "/UmmaClient/images/kP-1K4qVqT4.jpg"
+          return "/images/kP-1K4qVqT4.jpg"
         }
     });
   }

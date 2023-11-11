@@ -8,7 +8,7 @@ export async function getAddresses(map) {
     const jsonLocation = JSON.stringify(location)
 
     try {
-        const res  = await fetch(`https://umma-maps.ru/addresses/${jsonLocation}`)
+        const res  = await fetch(`https://umma-maps.store/addresses/${jsonLocation}`)
         const data = await res.json()
         if(data) {           
             return data
