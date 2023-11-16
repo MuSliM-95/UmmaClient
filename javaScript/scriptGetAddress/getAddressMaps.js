@@ -76,15 +76,11 @@ async function init() {
   }
 
   myMap.events.add("boundschange", async function () {
-
-    if(multiRoute) {
+    
+    if (!multiRoute) {
       const updatedVisibleAddresses = await  getAddresses(
         myMap
       );
-
-    }
-
-    if (!multiRoute) {
       myMap.geoObjects.removeAll();
       addAddressMaps(updatedVisibleAddresses);
     }
