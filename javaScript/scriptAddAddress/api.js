@@ -4,7 +4,6 @@ import { clearForm } from "./index.js";
 export async function addAddress(nameInput, photo, formData, timeInput) {
   const name = nameInput.value;
   const [input1, input2] = timeInput
-  console.log(input1.value);
   formData.delete("name");
   formData.delete("photo");
   formData.delete("time")
