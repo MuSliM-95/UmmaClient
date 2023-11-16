@@ -7,7 +7,6 @@ async function init() {
   const location = getLocationData.geoObjects.position;
   let multiRoute;
 
-  console.log(location);
   
   const myMap =  new ymaps.Map("map", {
     center: location,
@@ -77,9 +76,13 @@ async function init() {
   }
 
   myMap.events.add("boundschange", async function () {
-    const updatedVisibleAddresses = await  getAddresses(
-      myMap
-    );
+
+    if(multiRoute) {
+      const updatedVisibleAddresses = await  getAddresses(
+        myMap
+      );
+
+    }
 
     if (!multiRoute) {
       myMap.geoObjects.removeAll();
