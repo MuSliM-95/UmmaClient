@@ -27,9 +27,6 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
     const res = await fetch(`https://umma-maps.store/data`, {
       method: "POST",
       body: formData,
-      headers: {
-        "Content-type": "application/json",
-      }
     });
 
     const data = await res.json();
