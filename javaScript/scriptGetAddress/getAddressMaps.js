@@ -83,6 +83,7 @@ async function init() {
   }
 
   myMap.events.add("boundschange", async function () {
+    console.log(state);
     if (!state.balloon) {
       const updatedVisibleAddresses = await getAddresses(myMap);
       myMap.geoObjects.removeAll();
@@ -91,7 +92,7 @@ async function init() {
   });
 
   async function pathAddress(endLocation) {
-    console.log(2);
+    console.log(state);
     if (state.multiRoute) {
       myMap.geoObjects.remove(state.multiRoute);
     }
