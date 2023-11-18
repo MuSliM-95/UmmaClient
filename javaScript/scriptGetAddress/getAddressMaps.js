@@ -83,15 +83,15 @@ async function init() {
     });
   }
 
-  // myMap.events.add("boundschange", async function () {
-  //   document.addEventListener("focusin", (state.onKeyboardOpen = true));
-  //   document.addEventListener("focusout", (state.onKeyboardOpen = false));
-  //   if (!state.balloon) {
-  //     const updatedVisibleAddresses = await getAddresses(myMap);
-  //     myMap.geoObjects.removeAll();
-  //     addAddressMaps(updatedVisibleAddresses);
-  //   }
-  // });
+  myMap.events.add("boundschange", async function () {
+    document.addEventListener("focusin", (state.onKeyboardOpen = true));
+    document.addEventListener("focusout", (state.onKeyboardOpen = false));
+    if (!state.balloon) {
+      const updatedVisibleAddresses = await getAddresses(myMap);
+      myMap.geoObjects.removeAll();
+      addAddressMaps(updatedVisibleAddresses);
+    }
+  });
 
   async function pathAddress(endLocation) {
     if (state.multiRoute) {
