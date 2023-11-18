@@ -9,6 +9,7 @@ async function init() {
   const state = {
     multiRoute: null,
     balloon: false,
+    onKeyboardOpen: false,
   };
 
   const myMap = new ymaps.Map("map", {
@@ -52,7 +53,7 @@ async function init() {
       );
 
       myPlacemark.events.add("click", () => {
-        pathAddress([ el.latitude, el.longitude]);
+        pathAddress([el.latitude, el.longitude]);
         state.balloon = true;
       });
       myMap.geoObjects.add(myPlacemark);
@@ -82,13 +83,15 @@ async function init() {
     });
   }
 
-  myMap.events.add("boundschange", async function () {
-    if (!state.balloon) {
-      const updatedVisibleAddresses = await getAddresses(myMap);
-      myMap.geoObjects.removeAll();
-      addAddressMaps(updatedVisibleAddresses);
-    }
-  });
+  // myMap.events.add("boundschange", async function () {
+  //   document.addEventListener("focusin", (state.onKeyboardOpen = true));
+  //   document.addEventListener("focusout", (state.onKeyboardOpen = false));
+  //   if (!state.balloon) {
+  //     const updatedVisibleAddresses = await getAddresses(myMap);
+  //     myMap.geoObjects.removeAll();
+  //     addAddressMaps(updatedVisibleAddresses);
+  //   }
+  // });
 
   async function pathAddress(endLocation) {
     if (state.multiRoute) {
