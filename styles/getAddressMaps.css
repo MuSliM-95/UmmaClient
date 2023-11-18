@@ -1,6 +1,5 @@
 .maps_wrapper {
-    height: 100vh;
-    width: 100vh;
+    /* display: flex; */
     position: relative;
 }
 
