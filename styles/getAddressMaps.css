@@ -1,5 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 .maps_wrapper {
     display: flex;
+    justify-content: center;
     width: 90%;
     position: relative;
 }
