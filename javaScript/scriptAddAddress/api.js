@@ -1,5 +1,5 @@
 import { clearForm } from "./index.js";
-import imageCompression  from "browser-image-compression/dist/browser-image-compression.js"
+import imageCompression  from "browser-image-compression"
 
 // Функция для отправки формы.
 export async function addAddress(nameInput, imageFile, formData, timeInput) {
