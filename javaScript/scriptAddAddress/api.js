@@ -1,17 +1,17 @@
 import { clearForm } from "./index.js";
-import imageCompression  from "browser-image-compression"
+// import imageCompression  from "browser-image-compression"
 
 // Функция для отправки формы.
-export async function addAddress(nameInput, imageFile, formData, timeInput) {
+export async function addAddress(nameInput, photo, formData, timeInput) {
   const name = nameInput.value;
   const [input1, input2] = timeInput
 
-  const photo = await imageCompression(imageFile, {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 800,
-  });
+  // const photo = await imageCompression(imageFile, {
+  //   maxSizeMB: 1,
+  //   maxWidthOrHeight: 800,
+  // });
 
-  console.log(photo);
+  // console.log(photo);
   
   formData.delete("name");
   formData.delete("photo");
