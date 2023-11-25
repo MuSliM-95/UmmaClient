@@ -1,5 +1,5 @@
 import { clearForm } from "./index.js";
-import imageCompression  from "browser-image-compression"
+import imageCompression  from "browser-image-compression/dist/browser-image-compression.js"
 
 // Функция для отправки формы.
 export async function addAddress(nameInput, imageFile, formData, timeInput) {
@@ -7,8 +7,8 @@ export async function addAddress(nameInput, imageFile, formData, timeInput) {
   const [input1, input2] = timeInput
 
   const photo = await imageCompression(imageFile, {
-    maxSizeMB: 1, // Максимальный размер после сжатия в мегабайтах
-    maxWidthOrHeight: 800, // Максимальная ширина или высота после сжатия
+    maxSizeMB: 1,
+    maxWidthOrHeight: 800,
   });
 
   console.log(photo);
