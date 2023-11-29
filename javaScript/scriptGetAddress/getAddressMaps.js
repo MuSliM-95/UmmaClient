@@ -1,3 +1,4 @@
+import { https } from "../scriptAddAddress/api.js";
 import { getAddresses } from "./api.js";
 
 ymaps.ready(init);
@@ -28,7 +29,7 @@ async function init() {
         {
           balloonContent: `
       <div class="balloon_content" >
-      <img class="balloon_image" src="https://umma-maps.store/${
+      <img class="balloon_image" src="${https}/${
         el.photo?.image || "scale_1200.webp"
       }" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
@@ -64,21 +65,27 @@ async function init() {
       });
 
       function settingicon() {
-        if (el.place === "Мечеть, молельня...")
+        if (el.place === "Мечеть, молельня...") {
           return "/images/free-icon-mosque-7720545.png";
-        if (el.place === "Кафе, столовая, ресторан")
+        }
+        if (el.place === "Кафе, столовая, ресторан") {
           return "/images/restaurant_location_icon_146860.png";
-        if (el.place === "Здоровье, аптека, стоматология")
+        }
+        if (el.place === "Здоровье, аптека, стоматология") {
           return "/images/4dlnngicuab8_64.png";
-        if (el.place === "Автозапчасти, сервис...")
-          return "/images/4886967921672192.jpg";
+        }
+        if (el.place === "Автозапчасти, сервис...") {
+          return "/images/free-icon-car-repair-5193748.png";
+        }
         if (
           el.place === "Продуктовый Магазин" ||
           el.place === "Исламский магазин"
-        )
+        ) {
           return "/images/supermarket-512-e1443509745315.png";
-        if (el.place === "Мусульманский отель, хостел")
+        }
+        if (el.place === "Мусульманский отель, хостел") {
           return "/images/kP-1K4qVqT4.jpg";
+        }
       }
     });
   }

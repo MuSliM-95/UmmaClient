@@ -1,3 +1,4 @@
+import { https } from "../scriptAddAddress/api"
 
 export async function getAddresses(map) {
     const bounds = await map.getBounds()
@@ -8,7 +9,7 @@ export async function getAddresses(map) {
     const jsonLocation = JSON.stringify(location)
 
     try {
-        const res  = await fetch(`https://umma-maps.store/addresses/${jsonLocation}`)
+        const res  = await fetch(`${https}/addresses/${jsonLocation}`)
         const data = await res.json()
         if(data) {           
             return data
