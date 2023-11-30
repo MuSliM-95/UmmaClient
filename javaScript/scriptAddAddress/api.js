@@ -1,24 +1,25 @@
 import { clearForm } from "./index.js";
 
-export const https =  "https://umma-maps.store"
+export const https =  "http://localhost:5000"
 // "https://umma-maps.store" ||
 
 // Функция для отправки формы.
 export async function addAddress(nameInput, photo, formData, timeInput) {
   const name = nameInput.value;
   const [input1, input2] = timeInput;
+  const urlParams = new URLSearchParams(window.location.search);
+  const chatId = urlParams.get("chatId");
+  console.log(chatId);
+
+
 
   // const photo = compressionsImage(files);
-
- 
-
-  console.log(photo);
 
   formData.delete("name");
   formData.delete("photo");
   formData.delete("time");
   formData.append("name", name);
-  formData.append("photo", photo);
+  formData.append("photo", photo.files[0]);
   formData.append("time", `${input1.value} до ${input2.value}`);
 
   const region = formData.get("region");
@@ -42,7 +43,7 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
     return;
   }
   try {
-    const res = await fetch(`${https}/data`, {
+    const res = await fetch(`${https}/data/${chatId}`, {
       method: "POST",
       body: formData,
     });
