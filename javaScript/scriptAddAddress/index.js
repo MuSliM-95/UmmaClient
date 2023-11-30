@@ -80,8 +80,8 @@ export function clearForm() {
   formData = new FormData();
 }
 
-submitButton.addEventListener("click", () =>
-addAddress(
+submitButton.addEventListener("click",  () =>
+ addAddress(
     nameInput,
     photo,
     formData,

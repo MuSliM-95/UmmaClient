@@ -1,6 +1,6 @@
 import { clearForm } from "./index.js";
 
-export const https =  "http://localhost:5000"
+export const https =  "https://umma-maps.store"
 // "https://umma-maps.store" ||
 
 // Функция для отправки формы.
