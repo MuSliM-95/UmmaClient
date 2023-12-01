@@ -1,6 +1,7 @@
+import { https } from "../https.js";
 import { clearForm } from "./index.js";
 
-export const https =  "https://umma-maps.store"
+
 
 // Функция для отправки формы.
 export async function addAddress(nameInput, photo, formData, timeInput) {

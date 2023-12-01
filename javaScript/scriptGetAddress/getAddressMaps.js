@@ -1,4 +1,4 @@
-import { https } from "../scriptAddAddress/api.js";
+import { https } from "../https.js";
 import { getAddresses } from "./api.js";
 
 ymaps.ready(init);
@@ -37,6 +37,7 @@ async function init() {
       <em>${el.place}</em>
       <em><strong>Место молитвы: </strong>${el.prayer}</em>
       <em><strong>Время работы: </strong>${el.time}</em>
+      <em><strong>id:</strong>${el.id}</em>
       <em>${el.address}</em>
       <a href="https://yandex.ru/maps/?rtext=${location}~${[
             el.latitude,

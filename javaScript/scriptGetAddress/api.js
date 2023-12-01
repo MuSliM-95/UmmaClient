@@ -1,4 +1,5 @@
-import { https } from "../scriptAddAddress/api.js"
+import { https } from "../https.js"
+
 
 export async function getAddresses(map) {
     const bounds = await map.getBounds()
