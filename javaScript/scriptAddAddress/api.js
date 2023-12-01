@@ -1,7 +1,6 @@
 import { clearForm } from "./index.js";
 
 export const https =  "https://umma-maps.store"
-// "https://umma-maps.store" ||
 
 // Функция для отправки формы.
 export async function addAddress(nameInput, photo, formData, timeInput) {
@@ -9,11 +8,7 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
   const [input1, input2] = timeInput;
   const urlParams = new URLSearchParams(window.location.search);
   const chatId = urlParams.get("chatId");
-  console.log(chatId);
 
-
-
-  // const photo = compressionsImage(files);
 
   formData.delete("name");
   formData.delete("photo");
@@ -75,49 +70,4 @@ export async function getMyLocation() {
   } catch (error) {
     console.log(error.message);
   }
-}
-
-function compressionsImage(event) {
-  const file = event.target?.files[0];
-  let outputCanvas
-  let ctx
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-          const img = new Image();
-          img.onload = function () {
-
-              const maxWidth = 800;
-              const maxHeight = 800;
-              let newWidth = img.width;
-              let newHeight = img.height;
-
-              if (img.width > maxWidth) {
-                  newWidth = maxWidth;
-                  newHeight = (img.height * maxWidth) / img.width;
-              }
-
-              if (img.height > maxHeight) {
-                  newHeight = maxHeight;
-                  newWidth = (img.width * maxHeight) / img.height;
-              }
-
-              outputCanvas.width = newWidth;
-              outputCanvas.height = newHeight;
-
-              ctx.drawImage(img, 0, 0, newWidth, newHeight);
-
-              const compressedDataURL = outputCanvas.toDataURL('image/jpeg', 0.8);
-
-              return compressedDataURL
-          };
-
-          img.src = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-  }
-  
 }
