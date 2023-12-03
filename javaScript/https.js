@@ -1,1 +1,1 @@
-export const https =  "https://umma-maps.store"
+export const https =  "http://localhost:5000"
