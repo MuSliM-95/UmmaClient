@@ -3,6 +3,7 @@ import { getAddresses } from "./api.js";
 
 ymaps.ready(init);
 
+// Функция для вывода адресов на карту 
 async function init() {
   const getLocationData = await ymaps.geolocation.get();
   const location = getLocationData.geoObjects.position;
@@ -22,8 +23,10 @@ async function init() {
 
   addAddressMaps(addresses);
 
+  // Функция для вывода элементов адреса в виде html в balloon
   function addAddressMaps(addAddress) {
     addAddress?.forEach((el) => {
+      const text = el.descriptions ? el.descriptions.slice(0, 50) + "..." : ""
       const myPlacemark = new ymaps.Placemark(
         [el.latitude, el.longitude],
         {
@@ -39,6 +42,7 @@ async function init() {
       <em><strong>Время работы: </strong>${el.time}</em>
       <em><strong>id:</strong>${el.id}</em>
       <em>${el.address}</em>
+      <em>${text}</em>
       <a href="https://yandex.ru/maps/?rtext=${location}~${[
             el.latitude,
             el.longitude,
@@ -99,6 +103,7 @@ async function init() {
     }
   });
 
+// Функция для изменения схемы пути 
   async function pathAddress(endLocation) {
     if (state.multiRoute) {
       myMap.geoObjects.remove(state.multiRoute);

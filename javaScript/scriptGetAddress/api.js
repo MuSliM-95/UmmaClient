@@ -1,5 +1,6 @@
 import { https } from "../https.js"
 
+// Функция для получения адресов по координатам 
 
 export async function getAddresses(map) {
     const bounds = await map.getBounds()

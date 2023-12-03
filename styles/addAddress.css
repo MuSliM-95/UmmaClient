@@ -90,3 +90,13 @@ input {
   width: 70%;
   justify-content: space-between;
 }
+
+.section_div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#descriptions_label {
+  font-size: 10px;
+}

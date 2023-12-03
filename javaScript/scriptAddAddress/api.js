@@ -4,16 +4,18 @@ import { clearForm } from "./index.js";
 
 
 // Функция для отправки формы.
-export async function addAddress(nameInput, photo, formData, timeInput) {
+export async function addAddress(textarea, nameInput, photo, formData, timeInput) {
   const name = nameInput.value;
   const [input1, input2] = timeInput;
   const urlParams = new URLSearchParams(window.location.search);
   const chatId = urlParams.get("chatId");
 
 
+  formData.delete("textarea");
   formData.delete("name");
   formData.delete("photo");
   formData.delete("time");
+  formData.append("textarea", textarea.value);
   formData.append("name", name);
   formData.append("photo", photo.files[0]);
   formData.append("time", `${input1.value} до ${input2.value}`);
@@ -54,6 +56,7 @@ export async function addAddress(nameInput, photo, formData, timeInput) {
   }
 }
 
+// Функция для определения геолокации
 export async function getMyLocation() {
   try {
     const position = await new Promise((resolve, reject) => {

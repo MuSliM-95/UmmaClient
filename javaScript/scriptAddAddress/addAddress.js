@@ -7,7 +7,7 @@ const mapButton = document.getElementById("mapButton")
 
 let firstGeoObject
 
-
+// Функция получения адреса отмеченного места 
 export async function init() {
 
     const location = await getMyLocation()
