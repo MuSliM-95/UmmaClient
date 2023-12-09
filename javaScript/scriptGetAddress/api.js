@@ -27,7 +27,6 @@ export async function getAddressTelegramChatBot(chatId, addressId) {
     const data = await fetch(
       `${https}/getAddress/botChat/${chatId}/${addressId}`
     );
-    console.log(data);
 
     if (data.status === 200) {
       alert("Адрес отправлен в чат с ботом")

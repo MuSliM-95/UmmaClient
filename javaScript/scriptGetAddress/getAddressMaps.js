@@ -95,6 +95,9 @@ async function init() {
         if (el.place === "Мусульманский отель, хостел") {
           return "/images/kP-1K4qVqT4.jpg";
         }
+        if (el.place === "Другое") {
+          return "/pngwing.com (4).png";
+        }
       }
     });
   }
