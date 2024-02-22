@@ -93,7 +93,7 @@ async function init() {
           return "/images/supermarket-512-e1443509745315.png";
         }
         if (el.place === "Мусульманский отель, хостел") {
-          return "/images/kP-1K4qVqT4.jpg";
+          return "/images/free-icon-hostal-10402340.png";
         }
         if (el.place === "Другое") {
           return "/pngwing.com (4).png";
