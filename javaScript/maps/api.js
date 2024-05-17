@@ -25,7 +25,7 @@ export async function getAddresses(map) {
 export async function getAddressTelegramChatBot(chatId, addressId) {
   try {
     const data = await fetch(
-      `${https}/getAddress/botChat/${chatId}/${addressId}`
+      `${https}/address/${addressId}/${chatId}`
     );
 
     if (data.status === 200) {

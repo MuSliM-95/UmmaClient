@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://api-maps.yandex.ru/2.1/?apikey=1bfebb35-b93c-498c-bff6-d474d10a7078&lang=ru_RU"
+        type="text/javascript"></script>
+    <link rel="stylesheet" href="../styles/update-address.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="wrapper" id="form">
+        <section class="section">
+            <h4>Название заведения</h4>
+            <input  id="name" type="text" autocomplete="none" required />
+        </section>
+        <section class="section">
+            <div class="section-textarea">
+                <h4 class="section_h4_file">Описания, номер</h4>
+                <label id="descriptions_label" for="descriptions"></label>
+            </div>
+            <textarea id="descriptions" type="text" placeholder="Опишите место" maxlength="300" required></textarea>
+        </section>
+        <section class="section" required>
+            <h4>Укажите что за место вы добавляете</h4>
+            <select id="drop-down-list">
+                <option>Выберите место</option>
+                <option>Мечеть, молельня...</option>
+                <option>Кафе, столовая, ресторан</option>
+                <option>Здоровье, аптека, стоматология</option>
+                <option>Автозапчасти, сервис...</option>
+                <option>Продуктовый Магазин</option>
+                <option>Исламский магазин</option>
+                <option>Мусульманский отель, хостел</option>
+                <option>Другое</option>
+            </select>
+        </section>
+        <section class="section">
+            <h4>Укажите время работы</h4>
+            <div class="section-time">
+                <input placeholder="00:00" type="time" required/>
+                <div>до</div>
+                <input placeholder="00:00" type="time" required />
+            </div>
+        </section>
+        <section class="section-place">
+            <h4>Есть места для молитвы</h4>
+            <select name="section-place-select" id="section-place-select" required>
+                <option>Выберите</option>
+                <option>Только для братьев</option>
+                <option>Только для сестер</option>
+                <option>Для братьев и сестер</option>
+                <option>Рядом есть мечеть</option>
+                <option>Нет мест для молитв</option>
+            </select>
+        </section>
+        <section class="section" id="addressSection">
+            <h4>Укажите адрес</h4>
+            <div class="section_div_address" style="display: flex">
+                <input id="addressInput" type="text" autocomplete="none" required />
+                <button class="section_mapButton" id="mapButton" type="button">
+                    Карта
+                </button>
+            </div>
+        </section>
+        <section class="section section_map_none" id="mapSection">
+            <div id="map" style="width: 100%; height: 400px"></div>
+        </section>
+        <section class="section_button section">
+            <button id="button" type="submit">Изменить</button>
+        </section>
+    </form>
+    <script defer type="module" src="../javaScript/update-address/update-address.js"></script>
+</body>
+
+</html>

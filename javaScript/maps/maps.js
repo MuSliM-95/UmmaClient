@@ -35,7 +35,7 @@ async function init() {
           balloonContent: `
       <div class="balloon_content" >
       <img alt="address_image" class="balloon_image" src="${https}/${
-       el.photo.image|| "scale_1200.webp"
+       el.photo[0].image || "pngtree-img-file-document-icon-png-image_897560.jpg"
       }" "style="max-width: 20px; max-height: 20px;"/>
       <div class="balloon_address_info">
       <strong>${el.title}</strong>

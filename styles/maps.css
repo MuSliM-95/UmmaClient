@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
 .maps_wrapper {
     position: relative;
@@ -14,7 +14,7 @@
     width: 90%;
     justify-content: space-between;
 }
-  
+
 .balloon_image {
     width: 70px;
     height: 70px;

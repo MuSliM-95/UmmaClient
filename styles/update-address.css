@@ -1,0 +1,95 @@
+.wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+}
+
+.custom-file-input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0.8;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.files-block div {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.files-block {
+    display: flex;
+    width: 90%;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+section * {
+    width: 90%;
+}
+
+.section-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.section-place {
+    display: flex;
+
+}
+
+section h4 {
+    margin-bottom: 10px;
+}
+
+.section_map_none {
+    display: none;
+}
+
+.section-textarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 90%;
+}
+
+.section-textarea * {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    margin: 0;
+}
+
+#descriptions_label {
+    font-size: 10px;
+    height: 19.2px;
+    justify-content: flex-end;
+}
+
+#mapButton {
+    width: 50px;
+}
