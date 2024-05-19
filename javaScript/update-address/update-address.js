@@ -59,7 +59,7 @@ for (let i = 0; i < 3; i++) {
     const img = document.createElement("img")
     div.append(img, input)
 
-    const image = address.photo[i]?.image || "pngtree-img-file-document-icon-png-image_897560.jpg"
+    const image = address.photo[i] && address.photo[i].image || "pngtree-img-file-document-icon-png-image_897560.jpg"
     img.src = `${https}/${image}`
 
 

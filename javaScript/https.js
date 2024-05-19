@@ -1,2 +1,2 @@
-export const https =  "https://umma-maps.store"
+export const https =  "https://umma-maps.ru"
 
