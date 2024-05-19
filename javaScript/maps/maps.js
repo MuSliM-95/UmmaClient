@@ -1,12 +1,14 @@
 import { config } from "../config.js";
 import { getAddressTelegramChatBot, getAddresses } from "./api.js";
 
+const { https, YANDEX_API } = config
+
 const script = document.querySelector('#script')
-script.setAttribute('src', config.YANDEX_API)   
+script.setAttribute('src', YANDEX_API)
 
 // Функция для вывода адресов на карту 
 
-script.onload = function() {
+script.onload = function () {
   ymaps.ready(init);
 
 }
@@ -51,9 +53,9 @@ async function init() {
       <em><strong>Адрес:</strong> ${el.address}</em>
       <em><strong>Описания:</strong> ${text}</em>
       <a href="https://yandex.ru/maps/?rtext=${location}~${[
-            el.latitude,
-            el.longitude,
-          ]}&rtt=auto">Проложить путь</a>
+              el.latitude,
+              el.longitude,
+            ]}&rtt=auto">Проложить путь</a>
       </div>
       <button id="btn_balloon" data-id="${el.id}">Вывести в чат</button>
       </div>
@@ -76,7 +78,7 @@ async function init() {
         pathAddress();
         state.balloon = false;
       });
-   
+
       // Функция для вывода иконок
       function settingicon() {
         if (el.place === "Мечеть, молельня...") {
@@ -106,7 +108,7 @@ async function init() {
       }
     });
   }
-// Обработка перемещения ракурса на карте
+  // Обработка перемещения ракурса на карте
   myMap.events.add("boundschange", async function () {
     if (!state.balloon) {
       const updatedVisibleAddresses = await getAddresses(myMap);
@@ -115,7 +117,7 @@ async function init() {
     }
   });
 
-// Функция для изменения схемы пути 
+  // Функция для изменения схемы пути 
   async function pathAddress(endLocation) {
     if (state.multiRoute) {
       myMap.geoObjects.remove(state.multiRoute);

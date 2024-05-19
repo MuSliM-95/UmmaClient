@@ -1,7 +1,7 @@
 import { config } from "../config.js";
 
 // Функция для получения адресов по координатам
-const {https} = config
+const { https } = config
 
 export async function getAddresses(map) {
   const bounds = await map.getBounds();

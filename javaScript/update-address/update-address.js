@@ -1,5 +1,5 @@
 import { addAddress, getAddressId, init } from "../global-func.js";
-import { config, https } from "../config.js";
+import { config } from "../config.js";
 
 const script = document.querySelector('#script')
 const form = document.querySelector("#form")
@@ -15,12 +15,13 @@ const nameInput = document.getElementById("name");
 const timeInput = document.querySelectorAll('input[type="time"]');
 const placeSelect = document.querySelector("#section-place-select")
 
-script.setAttribute('src', config.YANDEX_API)
+const { https, YANDEX_API } = config
 const urlParams = new URLSearchParams(window.location.search);
 const [chatId, addressId] = urlParams.getAll("data");
 const address = await getAddressId(addressId)
 const formData = new FormData()
 const files = []
+script.setAttribute('src', YANDEX_API)
 
 const addressGeolocation = [address.latitude, address.longitude]
 

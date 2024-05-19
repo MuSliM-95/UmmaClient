@@ -1,6 +1,9 @@
+import { config } from "../config.js";
 import { getAddressId } from "../global-func.js";
-import { https } from "../https.js"
 import { theme } from "./Carousel.js"
+
+
+const { https } = config
 
 
 const urlParams = new URLSearchParams(window.location.search)
