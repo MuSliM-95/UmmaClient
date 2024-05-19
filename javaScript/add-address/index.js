@@ -1,5 +1,8 @@
+
+import { config } from "../config.js";
 import { init, addAddress } from "../global-func.js";
 
+const script = document.querySelector('#script')
 const dropDownList = document.querySelector("#drop-down-list");
 const checkboxesPrayer = document.querySelectorAll(
   'input[name="places_for_prayer"]'
@@ -14,9 +17,13 @@ const mapSection = document.getElementById("mapSection");
 const mapButton = document.getElementById("mapButton")
 const form = document.querySelector(".registrationPage")
 
-ymaps.ready(() => {
-  init(mapSection, addressInput, mapButton, formData)
-});
+script.setAttribute('src', config.YANDEX_API)
+
+script.onload = function()  {
+  ymaps.ready(() => {
+    init(mapSection, addressInput, mapButton, formData)
+  });
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 const chatId = urlParams.get("chatId");

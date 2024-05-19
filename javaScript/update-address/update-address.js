@@ -1,6 +1,7 @@
 import { addAddress, getAddressId, init } from "../global-func.js";
-import { https } from "../https.js";
+import { config, https } from "../config.js";
 
+const script = document.querySelector('#script')
 const form = document.querySelector("#form")
 const block = document.createElement("div")
 const file = document.createElement("div")
@@ -14,7 +15,7 @@ const nameInput = document.getElementById("name");
 const timeInput = document.querySelectorAll('input[type="time"]');
 const placeSelect = document.querySelector("#section-place-select")
 
-
+script.setAttribute('src', config.YANDEX_API)
 const urlParams = new URLSearchParams(window.location.search);
 const [chatId, addressId] = urlParams.getAll("data");
 const address = await getAddressId(addressId)
@@ -23,9 +24,11 @@ const files = []
 
 const addressGeolocation = [address.latitude, address.longitude]
 
-ymaps.ready(() => {
-    init(mapSection, addressInput, mapButton, formData, addressGeolocation)
-});
+script.onload = function () {
+    ymaps.ready(() => {
+        init(mapSection, addressInput, mapButton, formData, addressGeolocation)
+    });
+}
 
 block.classList.add("block")
 file.classList = "files-block"

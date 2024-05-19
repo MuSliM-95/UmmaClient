@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=1bfebb35-b93c-498c-bff6-d474d10a7078&lang=ru_RU"
-    type="text/javascript"></script>
+  <script id="script" defer type="text/javascript"></script>
   <link rel="stylesheet" href="/styles/index.css" />
   <title>Document</title>
 </head>
@@ -24,7 +24,7 @@
     </section>
     <section class="section">
       <h4>Укажите что за место вы добавляете</h4>
-      <select id="drop-down-list" required >
+      <select id="drop-down-list" required>
         <option value="" selected disabled hidden>Выберите место</option>
         <option>Мечеть, молельня...</option>
         <option>Кафе, столовая, ресторан</option>
@@ -66,10 +66,10 @@
         Рядом есть мечеть
       </label>
       <label for="prayer4">
-        <input data-prayer="Нет мест для молитв" type="checkbox" name="places_for_prayer" id="prayer5"/>
+        <input data-prayer="Нет мест для молитв" type="checkbox" name="places_for_prayer" id="prayer5" />
         Нет мест для молитв
       </label>
-    </section> 
+    </section>
     <section class="section">
       <h4 class="section_h4_file">Выберите изображение (макс 20 МБ, и макс 3 файла)</h4>
       <input id="file" type="file" multiple accept=".jpg, .jpeg, .png" />

@@ -1,9 +1,15 @@
-import { https } from "../https.js";
+import { config } from "../config.js";
 import { getAddressTelegramChatBot, getAddresses } from "./api.js";
 
-ymaps.ready(init);
+const script = document.querySelector('#script')
+script.setAttribute('src', config.YANDEX_API)   
 
 // Функция для вывода адресов на карту 
+
+script.onload = function() {
+  ymaps.ready(init);
+
+}
 async function init() {
   const getLocationData = await ymaps.geolocation.get();
   const location = getLocationData.geoObjects.position;

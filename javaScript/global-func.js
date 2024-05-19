@@ -1,4 +1,7 @@
-import { https } from "./https.js";
+import { config } from "./config.js";
+
+
+const { https } = config
 
 // function для обработки данных с Яндекс Карты.
 export function dataProcessing(address, coords, formData) {
@@ -103,20 +106,20 @@ export async function init() {
 export async function addAddress() {
     try {
         const [textarea, nameInput, photo, formData, timeInput, form, chatId, addressId = ''] = arguments;
-               
+
         const prayer = formData.get("prayer");
 
-        
+
         if (!prayer) {
             alert('Выберите хотя бы один пункт, "Есть места для молитвы".');
             return
         }
-        
+
         if (photo.files.length > 3) {
             alert("Максимально допустимо только 3 файла")
             return
         }
-        
+
         onFormdata(formData, textarea, timeInput, photo, nameInput)
 
         const request = addressId ? "PATCH" : "POST"
