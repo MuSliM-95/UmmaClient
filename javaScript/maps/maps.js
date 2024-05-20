@@ -10,7 +10,6 @@ script.setAttribute('src', YANDEX_API)
 
 script.onload = function () {
   ymaps.ready(init);
-
 }
 async function init() {
   const getLocationData = await ymaps.geolocation.get();
