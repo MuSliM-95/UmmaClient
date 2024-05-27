@@ -84,6 +84,44 @@ section h4 {
     margin: 0;
 }
 
+.section_button {
+    margin-top: 15px;
+}
+
+#button {
+    padding: 5px;
+}
+
+
+.delete-image-button {
+    display: block;
+    z-index: 100;
+    position: absolute;
+    border: none;
+    right: 0;
+    background-image: url('../images/delete-remove-uncheck-svgrepo-com.svg');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.clear-image-button {
+    display: block;
+    z-index: 100;
+    position: absolute;
+    border: none;
+    background-image: url('../images/delete-stop-svgrepo-com.svg');
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
 #descriptions_label {
     font-size: 10px;
     height: 19.2px;

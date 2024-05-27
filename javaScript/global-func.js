@@ -106,9 +106,8 @@ export async function init() {
 export async function addAddress() {
     try {
         const [textarea, nameInput, photo, formData, timeInput, form, chatId, addressId = ''] = arguments;
-
+        
         const prayer = formData.get("prayer");
-
 
         if (!prayer) {
             alert('Выберите хотя бы один пункт, "Есть места для молитвы".');
@@ -123,6 +122,8 @@ export async function addAddress() {
         onFormdata(formData, textarea, timeInput, photo, nameInput)
 
         const request = addressId ? "PATCH" : "POST"
+
+        console.log(request);
         const res = await fetch(`${https}/address/${chatId}/${addressId}`, {
             method: request,
             body: formData,
@@ -148,7 +149,7 @@ function onFormdata(formData, textarea, timeInput, photo, nameInput) {
     formData.delete("time");
     formData.append("textarea", textarea.value);
     formData.append("name", name);
-    console.log(photo.files);
+
     for (let file of photo.files) {
         formData.append(`photo[]`, file);
     }

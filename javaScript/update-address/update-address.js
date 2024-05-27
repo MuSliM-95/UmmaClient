@@ -14,16 +14,19 @@ const textarea_label = document.getElementById("descriptions_label");
 const nameInput = document.getElementById("name");
 const timeInput = document.querySelectorAll('input[type="time"]');
 const placeSelect = document.querySelector("#section-place-select")
+const submit = document.querySelector('#button')
 
 const { https, YANDEX_API } = config
 const urlParams = new URLSearchParams(window.location.search);
 const [chatId, addressId] = urlParams.getAll("data");
 const address = await getAddressId(addressId)
 const formData = new FormData()
-const files = []
+const blob = new File([], 'pred.jpg', {type: 'image/jpg'})
+const files = [blob, blob, blob]
 script.setAttribute('src', YANDEX_API)
 
 const addressGeolocation = [address.latitude, address.longitude]
+const defaultImage = "default.jpg"
 
 script.onload = function () {
     ymaps.ready(() => {
@@ -55,34 +58,60 @@ textarea.addEventListener("input", (e) => {
 for (let i = 0; i < 3; i++) {
     const div = document.createElement("div")
     const input = document.createElement("input")
+    const button_clear = document.createElement("button")
 
+    const reader = new FileReader()
+
+    button_clear.classList.add("delete-image-button")
     input.type = "file"
     input.accept = ".jpg, .jpeg, .png"
+
     input.classList.add("custom-file-input")
 
     const img = document.createElement("img")
-    div.append(img, input)
+    div.append(button_clear, img, input)
 
-    const image = address.photo[i] && address.photo[i].image || "pngtree-img-file-document-icon-png-image_897560.jpg"
+    const image = address.photo[i] && address.photo[i].image || defaultImage
     img.src = `${https}/${image}`
 
 
     input.addEventListener("change", (event) => {
+
         const file = event.target.files[0]
         const pred_name = `${image}`
-        formData.append("pred_name[]", pred_name)
-        files.push(file)
-        const reader = new FileReader()
 
+        button_clear.classList.remove("delete-image-button")
+        button_clear.classList.add("clear-image-button")
+        formData.append("pred_name[]", pred_name)
+
+        files[i] = file
         reader.onload = function (e) {
             const imageUrl = e.target.result
             img.src = imageUrl
         }
         reader.readAsDataURL(file);
     })
+    
+    button_clear.addEventListener("click", (event) => {
+        event.stopPropagation();
+        button_clear.classList.add("delete-image-button")
+        button_clear.classList.remove("clear-image-button")
+        
+        if(files[i].name === 'pred.jpg') {
+            const file = new File([], `${defaultImage}`, {type: 'image/jpg'})
+            files[i] = file
+            input.value
+            img.src = `${https}/${defaultImage}`
+            return
+        }
+
+        files[i] = blob
+        img.src = `${https}/${image}`
+    })
 
     file.append(div)
 }
+
 
 // Настроил выпадающий список.
 function onChange() {
@@ -94,17 +123,17 @@ function onChange() {
     }
     formData.delete("prayer");
     formData.append("prayer", value);
-
 }
 
 dropDownList.onchange = onChange;
 placeSelect.onchange = onChange;
 
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
+submit.addEventListener("click", (event) => {
+    event.stopPropagation()
     addAddress(textarea, nameInput, { files }, formData, timeInput, form, chatId, addressId)
-});
+})
+
 
 block.append(file)
 form.prepend(block)
