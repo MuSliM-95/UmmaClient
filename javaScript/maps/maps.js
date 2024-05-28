@@ -18,7 +18,6 @@ async function init() {
   const chatId = urlParams.get("chatId");
 
   const state = {
-    multiRoute: null,
     balloon: false,
     onKeyboardOpen: false,
   };
@@ -68,13 +67,11 @@ async function init() {
       );
 
       myPlacemark.events.add("click", () => {
-        pathAddress([el.latitude, el.longitude]);
         state.balloon = true;
       });
       myMap.geoObjects.add(myPlacemark);
 
       myPlacemark.events.add("balloonclose", () => {
-        pathAddress();
         state.balloon = false;
       });
 
@@ -111,30 +108,9 @@ async function init() {
   myMap.events.add("boundschange", async function () {
     if (!state.balloon) {
       const updatedVisibleAddresses = await getAddresses(myMap);
-      myMap.geoObjects.removeAll();
       addAddressMaps(updatedVisibleAddresses);
     }
   });
-
-  // Функция для изменения схемы пути 
-  async function pathAddress(endLocation) {
-    if (state.multiRoute) {
-      myMap.geoObjects.remove(state.multiRoute);
-    }
-    if (endLocation) {
-      state.multiRoute = new ymaps.multiRouter.MultiRoute(
-        {
-          referencePoints: [location, endLocation],
-        },
-        {
-          boundsAutoApply: true,
-        }
-      );
-
-      return myMap.geoObjects.add(state.multiRoute);
-    }
-    state.multiRoute = null;
-  }
 
   // Делегирования событий, обработка клик по кнопке в baloon
   document.addEventListener("click", function (event) {
