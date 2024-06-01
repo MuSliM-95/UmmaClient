@@ -27,11 +27,16 @@ export function dataProcessing(address, coords, formData) {
 
 // Получаем адрес по id
 export async function getAddressId(addressId) {
-    const res = await fetch(`${https}/address/${addressId}`)
-    if (!res.ok) {
-        return
+    try {
+        const res = await fetch(`${https}/address/${addressId}`)
+        if (!res.ok) {
+            return
+        }
+        return await res.json()
+    } catch (error) {
+        console.log(error);
     }
-    return await res.json()
+
 }
 
 // Функция для определения геолокации
@@ -48,6 +53,7 @@ export async function getMyLocation() {
                 reject(message);
             }
         });
+        console.log(position);
         return position;
     } catch (error) {
         console.log(error.message);
@@ -57,56 +63,62 @@ export async function getMyLocation() {
 
 // Функция получения адреса отмеченного места 
 export async function init() {
-    const [mapSection, addressInput, mapButton, formData, addressGeolocation] = arguments
-    let firstGeoObject
+    try {
+        const [mapSection, addressInput, mapButton, formData, addressGeolocation] = arguments
+        let firstGeoObject
 
-    const location = addressGeolocation || await getMyLocation()
-    await getAddressFromCoordinates(location)
+        const location = addressGeolocation || await getMyLocation() || [44.228431, 42.047150]
+        await getAddressFromCoordinates(location)
 
-    const myMap = new ymaps.Map("map", {
-        center: location,
-        zoom: 12,
-    });
+        const myMap = new ymaps.Map("map", {
+            center: location,
+            zoom: 12,
+        });
 
-    const placemark = new ymaps.Placemark(myMap.getCenter(), {
-        balloonContent: "Выберите местоположение",
-    });
+        const placemark = new ymaps.Placemark(myMap.getCenter(), {
+            balloonContent: "Выберите местоположение",
+        });
 
-    myMap.geoObjects.add(placemark);
+        myMap.geoObjects.add(placemark);
 
-    placemark.events.add("dragend", (event) => {
-        getAddressFromCoordinates(placemark.geometry.getCoordinates());
-    });
+        placemark.events.add("dragend", (event) => {
+            getAddressFromCoordinates(placemark.geometry.getCoordinates());
+        });
 
-    myMap.events.add("click", (event) => {
-        placemark.geometry.setCoordinates(event.get("coords"));
+        myMap.events.add("click", (event) => {
+            placemark.geometry.setCoordinates(event.get("coords"));
 
-        getAddressFromCoordinates(placemark.geometry.getCoordinates());
+            getAddressFromCoordinates(placemark.geometry.getCoordinates());
 
-    });
+        });
 
-    async function getAddressFromCoordinates(coords) {
+        async function getAddressFromCoordinates(coords) {
 
-        const geocoder = await ymaps.geocode(coords)
+            const geocoder = await ymaps.geocode(coords)
 
-        firstGeoObject = geocoder.geoObjects.get(0);
-        addressInput.value = firstGeoObject.getAddressLine();
+            firstGeoObject = geocoder.geoObjects.get(0);
+            addressInput.value = firstGeoObject.getAddressLine();
 
-        if (coords) {
-            dataProcessing(firstGeoObject?._xalEntities, coords, formData)
+            if (coords) {
+                dataProcessing(firstGeoObject?._xalEntities, coords, formData)
+            }
         }
-    }
-    mapButton.addEventListener("click", () => {
-        mapSection.classList.toggle("section_map_none")
+        mapButton.addEventListener("click", () => {
+            mapSection.classList.toggle("section_map_none")
 
-    })
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 // Функция для отправки формы.
 export async function addAddress() {
     try {
         const [textarea, nameInput, photo, formData, timeInput, form, chatId, addressId = ''] = arguments;
-        
+
         const prayer = formData.get("prayer");
 
         if (!prayer) {

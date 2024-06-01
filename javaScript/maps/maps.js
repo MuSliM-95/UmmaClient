@@ -13,7 +13,8 @@ script.onload = function () {
 }
 async function init() {
   const getLocationData = await ymaps.geolocation.get();
-  const location = getLocationData.geoObjects.position;
+  console.log(getLocationData);
+  const location = getLocationData.geoObjects.position
   const urlParams = new URLSearchParams(window.location.search);
   const chatId = urlParams.get("chatId");
 
