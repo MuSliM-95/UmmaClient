@@ -14,7 +14,7 @@ script.onload = function () {
 async function init() {
   const getLocationData = await ymaps.geolocation.get();
   console.log(getLocationData);
-  const location = getLocationData.geoObjects.position
+  const location = getLocationData.geoObjects.position;
   const urlParams = new URLSearchParams(window.location.search);
   const chatId = urlParams.get("chatId");
 
@@ -35,76 +35,69 @@ async function init() {
   // Функция для вывода элементов адреса в виде html в balloon
   function addAddressMaps(addAddress) {
     addAddress?.forEach((el) => {
+      const {preset, color} = settingicon(el)
       const text = el.descriptions ? el.descriptions.slice(0, 30) + "..." : ""
-      const myPlacemark = new ymaps.Placemark(
-        [el.latitude, el.longitude],
-        {
+
+      myMap.geoObjects
+        .add(new ymaps.Placemark([el.latitude, el.longitude], {
           balloonContent: `
-      <div class="balloon_content" >
-      <img alt="address_image" class="balloon_image" src="${https}/${el.photo[0] ? el.photo[0].image : "pngtree-img-file-document-icon-png-image_897560.jpg"}"
-      "style="max-width: 20px; max-height: 20px;"/>
-      <div class="balloon_address_info">
-      <strong>${el.title}</strong>
-      <em>${el.place}</em>
-      <em><strong>Место молитвы: </strong>${el.prayer}</em>
-      <em><strong>Время работы: </strong>${el.time}</em>
-      <em><strong>id:</strong>${el.id}</em>
-      <em><strong>Адрес:</strong> ${el.address}</em>
-      <em><strong>Описания:</strong> ${text}</em>
-      <a href="https://yandex.ru/maps/?rtext=${location}~${[
+          <div class="balloon_content" >
+          <img alt="address_image" class="balloon_image" src="${https}/${el.photo[0] ? el.photo[0].image : "pngtree-img-file-document-icon-png-image_897560.jpg"}"
+          "style="max-width: 20px; max-height: 20px;"/>
+          <div class="balloon_address_info">
+          <strong>${el.title}</strong>
+          <em>${el.place}</em>
+          <em><strong>Место молитвы: </strong>${el.prayer}</em>
+          <em><strong>Время работы: </strong>${el.time}</em>
+          <em><strong>id:</strong>${el.id}</em>
+          <em><strong>Адрес:</strong> ${el.address}</em>
+          <em><strong>Описания:</strong> ${text}</em>
+          <a href="https://yandex.ru/maps/?rtext=${location}~${[
               el.latitude,
               el.longitude,
             ]}&rtt=auto">Проложить путь</a>
-      </div>
-      <button id="btn_balloon" data-id="${el.id}">Вывести в чат</button>
-      </div>
-      `,
-        },
-        {
-          iconLayout: "default#image",
-          iconImageHref: settingicon(),
-          iconImageSize: [30, 30],
-        }
-      );
+          </div>
+          <button id="btn_balloon" data-id="${el.id}">Вывести в чат</button>
+          </div>
+          `,
+          iconContent: preset,
 
-      myPlacemark.events.add("click", () => {
-        state.balloon = true;
-      });
-      myMap.geoObjects.add(myPlacemark);
+        }, {
+          preset: preset,
+          iconColor: color
+        }))
 
-      myPlacemark.events.add("balloonclose", () => {
-        state.balloon = false;
-      });
-
-      // Функция для вывода иконок
-      function settingicon() {
-        if (el.place === "Мечеть, молельня...") {
-          return "/images/free-icon-mosque-7720545.png";
-        }
-        if (el.place === "Кафе, столовая, ресторан") {
-          return "/images/restaurant_location_icon_146860.png";
-        }
-        if (el.place === "Здоровье, аптека, стоматология") {
-          return "/images/4dlnngicuab8_64.png";
-        }
-        if (el.place === "Автозапчасти, сервис...") {
-          return "/images/free-icon-car-repair-5193748.png";
-        }
-        if (
-          el.place === "Продуктовый Магазин" ||
-          el.place === "Исламский магазин"
-        ) {
-          return "/images/supermarket-512-e1443509745315.png";
-        }
-        if (el.place === "Мусульманский отель, хостел") {
-          return "/images/free-icon-hostal-10402340.png";
-        }
-        if (el.place === "Другое") {
-          return "/pngwing.com (4).png";
-        }
-      }
     });
   }
+
+  // Функция для вывода иконок
+  function settingicon(el) {
+    if (el?.place === "Здоровье, аптека, стоматология") {
+      return {preset: 'islands#redMedicalIcon', color: 'red'}
+    }
+    if (el?.place === "Мечеть, молельня...") {
+      return { preset: '<img class="iconContent" src="../../images/mosque_building_icon_195165.svg">', color: "green" }
+    }
+    if (el?.place === "Кафе, столовая, ресторан") {
+      return { preset: 'islands#yellowFoodIcon', color: "yellow" }
+    }
+    if (el?.place === "Автозапчасти, сервис...") {
+      return { preset: 'islands#brownAutoIcon', color: "brown" }
+    }
+    if (
+      el?.place === "Продуктовый Магазин" ||
+      el?.place === "Исламский магазин"
+    ) {
+      return { preset: 'islands#blueShoppingIcon', color: "blue" }
+    }
+    if (el?.place === "Мусульманский отель, хостел") {
+      return { preset: 'islands#orangeHotelIcon', color: 'orange' }
+    }
+    if (el?.place === "Другое") {
+      return { preset: 'islands#blackDotIcon', color: 'black' }
+    }
+  }
+
   // Обработка перемещения ракурса на карте
   myMap.events.add("boundschange", async function () {
     if (!state.balloon) {

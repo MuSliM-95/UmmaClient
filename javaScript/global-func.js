@@ -10,8 +10,7 @@ export function dataProcessing(address, coords, formData) {
     formData.delete("location");
     formData.delete("address");
 
-    const region =
-        address?.administrativeAreas && address?.administrativeAreas[0];
+    const region = address?.administrativeAreas && address?.administrativeAreas[0];
     const city =
         (address?.localities && address?.localities[0]) ||
         address?.premise ||
@@ -45,6 +44,7 @@ export async function getMyLocation() {
         const position = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(success, error, {
                 enableHighAccuracy: true,
+                maximumAge: 0
             });
             function success({ coords }) {
                 resolve([coords.latitude, coords.longitude]);
@@ -53,7 +53,6 @@ export async function getMyLocation() {
                 reject(message);
             }
         });
-        console.log(position);
         return position;
     } catch (error) {
         console.log(error.message);
@@ -74,6 +73,15 @@ export async function init() {
             center: location,
             zoom: 12,
         });
+
+        const searchControl = await myMap.controls.get('searchControl');
+
+        searchControl.events.add('resultselect', async (e) => {
+            const indix = e.get('index')
+            const data = await searchControl.getResult(indix)
+            const coords = data.geometry.getCoordinates()
+            await getAddressFromCoordinates(coords)
+        })
 
         const placemark = new ymaps.Placemark(myMap.getCenter(), {
             balloonContent: "Выберите местоположение",

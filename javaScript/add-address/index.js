@@ -1,6 +1,6 @@
 
 import { config } from "../config.js";
-import { init, addAddress } from "../global-func.js";
+import { init, addAddress, getMyLocation } from "../global-func.js";
 
 const script = document.querySelector('#script')
 const dropDownList = document.querySelector("#drop-down-list");
@@ -19,7 +19,7 @@ const form = document.querySelector(".registrationPage")
 
 script.setAttribute('src', config.YANDEX_API)
 
-script.onload = function()  {
+script.onload = function () {
   ymaps.ready(() => {
     init(mapSection, addressInput, mapButton, formData)
   });
@@ -64,8 +64,8 @@ checkboxesPrayer.forEach((checkbox) => {
   });
 });
 
-
 form.addEventListener("submit", (event) => {
+  console.log();
   event.preventDefault();
   addAddress(textarea, nameInput, photo, formData, timeInput, form, chatId)
 });
